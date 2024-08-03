@@ -2600,6 +2600,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "WheelSteering",
+            "id": "cab7a891-10fa-4a8b-9573-3e7d6fba49a4",
+            "actions": [
+                {
+                    "name": "Steering",
+                    "type": "Value",
+                    "id": "68402625-0fef-49ee-a804-33bdf869c74a",
+                    "expectedControlType": "Stick",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "7c764de6-3159-4ae9-a0b0-ac00ff1b03f9",
+                    "path": "<HID::Fanatec FANATEC Podium Wheel Base DD2>/stick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Steering",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.skaughtx0r.unityffb": {
+      "version": "https://github.com/skaughtx0r/unity-ffb.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "e55ec4c3c5112d829f88a615a81e4938a7980936"
+    },
     "com.unity.collab-proxy": {
       "version": "2.4.4",
       "depth": 0,
