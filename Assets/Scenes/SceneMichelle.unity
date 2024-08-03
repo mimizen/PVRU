@@ -664,7 +664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputActionAsset: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  steeringValueDisplay: 0
+  steeringValueDisplay: {x: 0, y: 0}
 --- !u!4 &555062594
 Transform:
   m_ObjectHideFlags: 0
@@ -692,6 +692,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 338498f87877e4844bd277edcab4d22b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interval: 3
+  forceValue: 100
 --- !u!114 &555062596
 MonoBehaviour:
   m_ObjectHideFlags: 0
