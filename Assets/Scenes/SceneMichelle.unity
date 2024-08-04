@@ -687,7 +687,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 555062592}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 338498f87877e4844bd277edcab4d22b, type: 3}
   m_Name: 
@@ -710,9 +710,9 @@ MonoBehaviour:
   autoSelectFirstDevice: 1
   disableAutoCenter: 0
   addConstantForce: 1
-  addSpringForce: 1
+  addSpringForce: 0
   force: 50
-  sensitivity: 20
+  sensitivity: 22.66
   axisDirections: 
   devices: []
   axes: []
@@ -779,6 +779,10 @@ PrefabInstance:
     - target: {fileID: 2752346770661123366, guid: 7358cf81ccce2b64fa86bd1f594e2cec, type: 3}
       propertyPath: m_Name
       value: RTC_TurnU
+      objectReference: {fileID: 0}
+    - target: {fileID: 2752346770661123366, guid: 7358cf81ccce2b64fa86bd1f594e2cec, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8492264463257938737, guid: 7358cf81ccce2b64fa86bd1f594e2cec, type: 3}
       propertyPath: m_Convex
@@ -852,6 +856,10 @@ PrefabInstance:
     - target: {fileID: 2978908115525632491, guid: cea6e5cd9de6ce74cb55b4b59c16f8b9, type: 3}
       propertyPath: m_Name
       value: RTC_StraightLong (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2978908115525632491, guid: cea6e5cd9de6ce74cb55b4b59c16f8b9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8845048102197235708, guid: cea6e5cd9de6ce74cb55b4b59c16f8b9, type: 3}
       propertyPath: m_Convex
@@ -1269,6 +1277,10 @@ PrefabInstance:
     - target: {fileID: 2978908115525632491, guid: cea6e5cd9de6ce74cb55b4b59c16f8b9, type: 3}
       propertyPath: m_Name
       value: RTC_StraightLong
+      objectReference: {fileID: 0}
+    - target: {fileID: 2978908115525632491, guid: cea6e5cd9de6ce74cb55b4b59c16f8b9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8845048102197235708, guid: cea6e5cd9de6ce74cb55b4b59c16f8b9, type: 3}
       propertyPath: m_Convex
@@ -1750,6 +1762,10 @@ PrefabInstance:
     - target: {fileID: 2978908115525632491, guid: cea6e5cd9de6ce74cb55b4b59c16f8b9, type: 3}
       propertyPath: m_Name
       value: RTC_StraightLong (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2978908115525632491, guid: cea6e5cd9de6ce74cb55b4b59c16f8b9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8845048102197235708, guid: cea6e5cd9de6ce74cb55b4b59c16f8b9, type: 3}
       propertyPath: m_Convex
@@ -2340,6 +2356,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RTC_Straight
       objectReference: {fileID: 0}
+    - target: {fileID: 3791320591535983006, guid: abec626bf700fb64c9b38ce046237a11, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7455041481137112969, guid: abec626bf700fb64c9b38ce046237a11, type: 3}
       propertyPath: m_Convex
       value: 1
@@ -2673,6 +2693,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RTC_ChicaneS_Left
       objectReference: {fileID: 0}
+    - target: {fileID: 1827725815086367030, guid: 330008d4a68e40042bca5926d151918a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3388460817402704677, guid: 330008d4a68e40042bca5926d151918a, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.34562278
@@ -2798,6 +2822,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RTC_TurnMedium
       objectReference: {fileID: 0}
+    - target: {fileID: 3993472939278279948, guid: 2579d530f84579c40a8fa4e1502a7ce0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7242759335750380315, guid: 2579d530f84579c40a8fa4e1502a7ce0, type: 3}
       propertyPath: m_Convex
       value: 1
@@ -2876,6 +2904,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RTC_StraightLong (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2978908115525632491, guid: cea6e5cd9de6ce74cb55b4b59c16f8b9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8845048102197235708, guid: cea6e5cd9de6ce74cb55b4b59c16f8b9, type: 3}
       propertyPath: m_Convex
       value: 1
@@ -2953,6 +2985,10 @@ PrefabInstance:
     - target: {fileID: 2752346770661123366, guid: 7358cf81ccce2b64fa86bd1f594e2cec, type: 3}
       propertyPath: m_Name
       value: RTC_TurnU (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2752346770661123366, guid: 7358cf81ccce2b64fa86bd1f594e2cec, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7274718605567446338, guid: 7358cf81ccce2b64fa86bd1f594e2cec, type: 3}
       propertyPath: m_Convex
@@ -3242,6 +3278,10 @@ PrefabInstance:
     - target: {fileID: 2237489659387894554, guid: 9a8b2b01aa2fc8746b3771430534fcc0, type: 3}
       propertyPath: m_Name
       value: RTC_TurnLong
+      objectReference: {fileID: 0}
+    - target: {fileID: 2237489659387894554, guid: 9a8b2b01aa2fc8746b3771430534fcc0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2978692609426991369, guid: 9a8b2b01aa2fc8746b3771430534fcc0, type: 3}
       propertyPath: m_LocalScale.x

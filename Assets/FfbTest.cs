@@ -20,6 +20,7 @@ namespace UnityFFB
         {
             // Find the UnityFFB instance in the scene
             ffb = UnityFFB.instance;
+           
 
             if (ffb == null)
             {
@@ -36,16 +37,20 @@ namespace UnityFFB
             while (true)
             {
                 // Apply force feedback in one direction
-                ffb.force = forceValue * direction;
+                
+                ffb.force = 0;//forceValue * direction;
                 ffb.StartFFBEffects();
-                Debug.Log("Force feedback applied. Direction: " + direction);
+                //Debug.Log("Force feedback applied. Direction: " + direction);
+                
+
 
                 // Wait for the specified interval
                 yield return new WaitForSeconds(interval);
+                ffb.force = 0;
 
                 // Stop force feedback
-                ffb.StopFFBEffects();
-                Debug.Log("Force feedback stopped.");
+                //ffb.StopFFBEffects();
+                //Debug.Log("Force feedback stopped.");
 
                 // Wait for the specified interval before applying force feedback again
                 yield return new WaitForSeconds(interval);

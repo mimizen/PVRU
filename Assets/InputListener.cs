@@ -38,6 +38,6 @@ public class InputListener : MonoBehaviour
         // Read the value of the action
        Vector2 steeringValue = context.ReadValue<Vector2>();
         steeringValueDisplay = steeringValue;
-        Debug.Log("Steering Value: " + steeringValue);
+        //Debug.Log("Steering Value: " + steeringValue);
     }
 }
