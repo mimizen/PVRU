@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1258179615091639582}
   m_Layer: 0
   m_Name: New Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -462,9 +462,21 @@ PrefabInstance:
       propertyPath: inputActionAsset
       value: 
       objectReference: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    - target: {fileID: 5330170727601038973, guid: 5616340a900dfe64e8bd1fd6836c1177, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5330170727601039671, guid: 5616340a900dfe64e8bd1fd6836c1177, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 5330170727601040259, guid: 5616340a900dfe64e8bd1fd6836c1177, type: 3}
       propertyPath: m_Name
       value: Working Car
+      objectReference: {fileID: 0}
+    - target: {fileID: 5330170727601252423, guid: 5616340a900dfe64e8bd1fd6836c1177, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5330170727601353641, guid: 5616340a900dfe64e8bd1fd6836c1177, type: 3}
       propertyPath: m_LocalPosition.x
@@ -529,6 +541,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5330170727601040259, guid: 5616340a900dfe64e8bd1fd6836c1177, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8149347064461128033}
+    - targetCorrespondingSourceObject: {fileID: 5330170727601040259, guid: 5616340a900dfe64e8bd1fd6836c1177, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8939252126271797947}
   m_SourcePrefab: {fileID: 100100000, guid: 5616340a900dfe64e8bd1fd6836c1177, type: 3}
 --- !u!4 &1652428654569495476 stripped
 Transform:
@@ -556,6 +571,18 @@ MonoBehaviour:
   speedFactor: 1
   steeringFactor: 1
   collisionForce: 100
+--- !u!114 &8939252126271797947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1652428654569833374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e70a01c870cb25a4bbbd0d8a2a6c385f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1652428654579512804 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5330170727594515961, guid: 5616340a900dfe64e8bd1fd6836c1177, type: 3}

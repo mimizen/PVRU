@@ -46,9 +46,9 @@ namespace UnityFFB
                 // Calculate force feedback based on car speed and steering angle
                 float speed = carController.CurrentSpeed;
                 float steeringAngle = carController.CurrentSteerAngle;
-                Debug.Log("current steering: "+steeringAngle);
+               // Debug.Log("current steering: "+steeringAngle);
                 int forceValue = (int)(speed * speedFactor + math.abs(steeringAngle) * steeringFactor*0.01f);
-                forceValue = 10;
+                forceValue = 5;
                 if (steeringAngle > 0)
                 {
                     ffb.force = forceValue;

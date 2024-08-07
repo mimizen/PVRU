@@ -29,9 +29,9 @@ namespace UnityStandardAssets.Vehicles.Car
         [SerializeField] private float m_FullTorqueOverAllWheels;
         [SerializeField] private float m_ReverseTorque;
         [SerializeField] private float m_MaxHandbrakeTorque;
-        [SerializeField] private float m_Downforce = 100f;
+        [SerializeField] public float m_Downforce = 100f;
         [SerializeField] private SpeedType m_SpeedType;
-        [SerializeField] private float m_Topspeed = 200;
+        [SerializeField] public float m_Topspeed = 200;
         [SerializeField] private static int NoOfGears = 5;
         [SerializeField] private float m_RevRangeBoundary = 1f;
         [SerializeField] private float m_SlipLimit;
@@ -45,6 +45,8 @@ namespace UnityStandardAssets.Vehicles.Car
         private float m_OldRotation;
         private float m_CurrentTorque;
         private Rigidbody m_Rigidbody;
+        private float originalTopSpeed;
+        private float originalDownforce;
         private const float k_ReversingThreshold = 0.01f;
 
         public bool Skidding { get; private set; }
@@ -58,6 +60,8 @@ namespace UnityStandardAssets.Vehicles.Car
         // Use this for initialization
         private void Start()
         {
+            originalTopSpeed = m_Topspeed;
+            originalDownforce = m_Downforce;
             m_WheelMeshLocalRotations = new Quaternion[4];
             for (int i = 0; i < 4; i++)
             {
