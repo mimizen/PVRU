@@ -12,25 +12,35 @@ public class TrackGenerator : MonoBehaviour
     public int[,] trackMatrix = new int[,] {
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0},
-    {0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0},
-    {0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0},
+    {0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
+    {0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
+    {0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0},
     {0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0},
-    {0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0},
-    {0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0},
-    {0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0},
-    {0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0},
-    {0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0},
+    {0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0},
+    {0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0},
+    {0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0},
+    {0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0},
+    {0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0},
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
    
 };
 
-public GameObject trackPrefab;
+    public GameObject trackPrefab;
     public GameObject barrierPrefab;
     public float scale = 10f;
+    private GameObject trackParent;
+    private GameObject barrierParent;
 
     void Start()
     {
+        trackParent = new GameObject("TrackParent");
+
+        barrierParent = new GameObject("BarrierParent");
+
+        trackParent.transform.SetParent(transform);
+
+        barrierParent.transform.SetParent(transform);
+
         GenerateTrack();
     }
 
@@ -46,7 +56,10 @@ public GameObject trackPrefab;
                 if (trackMatrix[i, j] == 1)
                 {
                     Vector3 position = new Vector3(j * scale, 0, i * scale);
-                    Instantiate(trackPrefab, position, Quaternion.identity);
+
+                    GameObject trackPiece = Instantiate(trackPrefab, position, Quaternion.identity);
+
+                    trackPiece.transform.SetParent(trackParent.transform); 
 
                     PlaceBarriers(i, j, position, rows, cols);
                 }
@@ -65,19 +78,23 @@ public GameObject trackPrefab;
     {
         if (j == 0 || trackMatrix[i, j - 1] == 0)
         {
-            Instantiate(barrierPrefab, position + new Vector3(-scale / 2, 0, 0), Quaternion.Euler(0, 90, 0));
+             GameObject barrier = Instantiate(barrierPrefab, position + new Vector3(-scale / 2, 0, 0), Quaternion.Euler(0, 90, 0));
+             barrier.transform.SetParent(barrierParent.transform);
         }
         if (j == cols - 1 || trackMatrix[i, j + 1] == 0)
         {
-            Instantiate(barrierPrefab, position + new Vector3(scale / 2, 0, 0), Quaternion.Euler(0, 90, 0));
+             GameObject barrier = Instantiate(barrierPrefab, position + new Vector3(scale / 2, 0, 0), Quaternion.Euler(0, 90, 0));
+             barrier.transform.SetParent(barrierParent.transform);
         }
         if (i == 0 || trackMatrix[i - 1, j] == 0)
         {
-            Instantiate(barrierPrefab, position + new Vector3(0, 0, -scale / 2), Quaternion.identity);
+             GameObject barrier = Instantiate(barrierPrefab, position + new Vector3(0, 0, -scale / 2), Quaternion.identity);
+             barrier.transform.SetParent(barrierParent.transform);
         }
         if (i == rows - 1 || trackMatrix[i + 1, j] == 0)
         {
-            Instantiate(barrierPrefab, position + new Vector3(0, 0, scale / 2), Quaternion.identity);
+             GameObject barrier = Instantiate(barrierPrefab, position + new Vector3(0, 0, scale / 2), Quaternion.identity);
+             barrier.transform.SetParent(barrierParent.transform);
         }
     }
 
