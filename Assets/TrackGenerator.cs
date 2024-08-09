@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class TrackGenerator : MonoBehaviour
 {
@@ -11,17 +12,17 @@ public class TrackGenerator : MonoBehaviour
     };*/
     public int[,] trackMatrix = new int[,] {
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
-    {0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
-    {0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0},
-    {0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0},
-    {0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0},
-    {0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0},
-    {0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0},
-    {0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0},
-    {0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0},
+    {0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0},
+    {0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0},
+    {0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0},
+    {0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0},
+    {0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0},
+    {0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0},
+    {0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0},
+    {0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
    
 };
 
@@ -31,37 +32,143 @@ public class TrackGenerator : MonoBehaviour
     private GameObject trackParent;
     private GameObject barrierParent;
 
+    public GameObject waypointPrefab; // Assign this prefab in the Unity Inspector
+    private GameObject waypointsParent; // Parent object to hold all waypoints for organization
+
     void Start()
     {
         trackParent = new GameObject("TrackParent");
 
         barrierParent = new GameObject("BarrierParent");
 
+        waypointsParent = new GameObject("WaypointsParent");
+
         trackParent.transform.SetParent(transform);
 
         barrierParent.transform.SetParent(transform);
 
+        waypointsParent.transform.SetParent(transform);
+
         GenerateTrack();
     }
-
-   void GenerateTrack()
+    void GenerateTrack()
     {
         int rows = trackMatrix.GetLength(0);
         int cols = trackMatrix.GetLength(1);
 
+        Vector2Int start = new Vector2Int(1, 1); // Start position
+        List<Vector2Int> path = DepthFirstSearch(start, rows, cols);
+
+        int waypointCount = 0;
+        foreach (Vector2Int pos in path)
+        {
+            Vector3 position = new Vector3(pos.y * scale, 0, pos.x * scale);
+            GameObject trackPiece = Instantiate(trackPrefab, position, Quaternion.identity);
+            trackPiece.transform.SetParent(trackParent.transform);
+
+            GameObject waypoint = Instantiate(waypointPrefab, position, Quaternion.identity);
+            waypoint.name = "Waypoint " + waypointCount;
+            waypoint.transform.SetParent(waypointsParent.transform);
+            waypointCount++;
+
+            PlaceBarriers(pos.x, pos.y, position, rows, cols);
+        }
+    }
+    List<Vector2Int> DepthFirstSearch(Vector2Int start, int rows, int cols)
+    {
+        List<Vector2Int> path = new List<Vector2Int>();
+        Stack<Vector2Int> stack = new Stack<Vector2Int>();
+        bool[,] visited = new bool[rows, cols];
+        Vector2Int[] directions = new Vector2Int[]
+        {
+            new Vector2Int(0, 1), // right
+            new Vector2Int(1, 0), // down
+            new Vector2Int(0, -1), // left
+            new Vector2Int(-1, 0) // up
+        };
+
+        stack.Push(start);
+        visited[start.x, start.y] = true;
+
+        while (stack.Count > 0)
+        {
+            Vector2Int current = stack.Pop();
+            path.Add(current);
+
+            foreach (Vector2Int direction in directions)
+            {
+                Vector2Int next = current + direction;
+                if (IsValidPosition(next.x, next.y, rows, cols) && !visited[next.x, next.y] && trackMatrix[next.x, next.y] == 1)
+                {
+                    stack.Push(next);
+                    visited[next.x, next.y] = true;
+                    break; // Ensure DFS moves in one direction at a time
+                }
+            }
+        }
+
+        return path;
+    }
+    List<Vector2Int> BreadthFirstSearch(Vector2Int start, int rows, int cols)
+    {
+        List<Vector2Int> path = new List<Vector2Int>();
+        Queue<Vector2Int> queue = new Queue<Vector2Int>();
+        bool[,] visited = new bool[rows, cols];
+        Vector2Int[] directions = new Vector2Int[]
+        {
+            new Vector2Int(0, 1), // right
+            new Vector2Int(1, 0), // down
+            new Vector2Int(0, -1), // left
+            new Vector2Int(-1, 0) // up
+        };
+
+        queue.Enqueue(start);
+        visited[start.x, start.y] = true;
+
+        while (queue.Count > 0)
+        {
+            Vector2Int current = queue.Dequeue();
+            path.Add(current);
+
+            foreach (Vector2Int direction in directions)
+            {
+                Vector2Int next = current + direction;
+                if (IsValidPosition(next.x, next.y, rows, cols) && !visited[next.x, next.y] && trackMatrix[next.x, next.y] == 1)
+                {
+                    queue.Enqueue(next);
+                    visited[next.x, next.y] = true;
+                }
+            }
+        }
+
+        return path;
+    }
+
+     void GenerateTrack2()
+    {
+        int rows = trackMatrix.GetLength(0);
+        int cols = trackMatrix.GetLength(1);
+        int waypointCount = 0;
+
         for (int i = 0; i < rows; i++)
         {
+            bool waypointPlaced = false;  // To ensure one waypoint per row
             for (int j = 0; j < cols; j++)
             {
                 if (trackMatrix[i, j] == 1)
                 {
                     Vector3 position = new Vector3(j * scale, 0, i * scale);
-
                     GameObject trackPiece = Instantiate(trackPrefab, position, Quaternion.identity);
+                    trackPiece.transform.SetParent(trackParent.transform);
+                    GameObject Waypoint = Instantiate(waypointPrefab, position, Quaternion.identity);
+                    Waypoint.name = "Waypoint " + waypointCount;
+                    Waypoint.transform.SetParent(waypointsParent.transform);
+                    waypointCount++;
 
-                    trackPiece.transform.SetParent(trackParent.transform); 
 
-                    PlaceBarriers(i, j, position, rows, cols);
+
+                    
+                     PlaceBarriers(i, j, position, rows, cols);
                 }
             }
         }
@@ -130,5 +237,18 @@ bool IsValidPosition(int i, int j, int rows, int cols)
     {
         // Further checks to ensure no track tiles prevent barrier placement
         return (IsValidPosition(i, nj, rows, cols) && trackMatrix[i, nj] == 0) || (IsValidPosition(ni, j, rows, cols) && trackMatrix[ni, j] == 0);
+    }
+void CreateWaypoint(Vector3 position)
+    {
+        GameObject waypoint = new GameObject("Waypoint");
+        waypoint.transform.position = position + new Vector3(0, 1, 0); // Slightly elevated above the track
+        waypoint.transform.SetParent(waypointsParent.transform); // Organize waypoints under a single parent
+    }
+    public List<Vector2Int> GetSortedWaypoints()
+    {
+        int rows = trackMatrix.GetLength(0);
+        int cols = trackMatrix.GetLength(1);
+        Vector2Int start = new Vector2Int(2, 2); // Start position
+        return DepthFirstSearch(start, rows, cols);
     }
 }
