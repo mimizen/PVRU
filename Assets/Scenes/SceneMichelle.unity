@@ -1029,6 +1029,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Starship Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 7393615998469899493, guid: 0e4b9d1887b45164cb80c5d003f6c4c3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7477137642409689251, guid: 0e4b9d1887b45164cb80c5d003f6c4c3, type: 3}
       propertyPath: m_Constraints
       value: 0
@@ -3063,7 +3067,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1623120566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3216,7 +3220,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1636144698
 MonoBehaviour:
   m_ObjectHideFlags: 0

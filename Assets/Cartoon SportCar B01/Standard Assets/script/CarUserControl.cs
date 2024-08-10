@@ -21,7 +21,7 @@ namespace UnityStandardAssets.Vehicles.Car
 
         private InputAction steeringAction; // Reference to the specific action
 
-        public Vector2 steeringValueDisplay; // Value of the action
+        public float steeringValueDisplay; // Value of the action
 
 
         private void Awake()
@@ -34,7 +34,7 @@ namespace UnityStandardAssets.Vehicles.Car
         private void FixedUpdate()
         {
             // pass the input to the car!
-            float h = steeringValueDisplay.x;
+            float h = steeringValueDisplay;
             //Mathf.Clamp(steeringwheel.angle / maxTurnAngle, -1, 1);
             float v = speed;
 #if !MOBILE_INPUT
@@ -49,9 +49,8 @@ namespace UnityStandardAssets.Vehicles.Car
         // Find the action map and action
         var actionMap = inputActionAsset.FindActionMap("Wheelsteering");
         steeringAction = actionMap.FindAction("Steering");
+        
 
-        // Enable the action map
-        actionMap.Enable();
 
         // Subscribe to the performed event
         steeringAction.performed += OnSteering;
@@ -70,7 +69,8 @@ namespace UnityStandardAssets.Vehicles.Car
     {
         // Read the value of the action
        Vector2 steeringValue = context.ReadValue<Vector2>();
-        steeringValueDisplay = steeringValue;
+        steeringValueDisplay = steeringValue.x;
+      // Debug.Log("steering value: "+steeringValue.x);
         //Vector3 holder = steeringwheel.transform.localEulerAngles ; 
         //holder.y = steeringValue.x * maxTurnAngle;
         //steeringwheel.transform.localEulerAngles = holder;

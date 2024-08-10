@@ -2609,7 +2609,7 @@
                     "name": "Steering",
                     "type": "Value",
                     "id": "68402625-0fef-49ee-a804-33bdf869c74a",
-                    "expectedControlType": "Stick",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -2619,7 +2619,7 @@
                 {
                     "name": "",
                     "id": "7c764de6-3159-4ae9-a0b0-ac00ff1b03f9",
-                    "path": "<HID::Fanatec FANATEC Podium Wheel Base DD2>/stick",
+                    "path": "<Joystick>/stick",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

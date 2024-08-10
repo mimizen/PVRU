@@ -187,21 +187,25 @@ public class TrackGenerator : MonoBehaviour
         {
              GameObject barrier = Instantiate(barrierPrefab, position + new Vector3(-scale / 2, 0, 0), Quaternion.Euler(0, 90, 0));
              barrier.transform.SetParent(barrierParent.transform);
+             barrier.tag = "Wall";
         }
         if (j == cols - 1 || trackMatrix[i, j + 1] == 0)
         {
              GameObject barrier = Instantiate(barrierPrefab, position + new Vector3(scale / 2, 0, 0), Quaternion.Euler(0, 90, 0));
              barrier.transform.SetParent(barrierParent.transform);
+             barrier.tag = "Wall";
         }
         if (i == 0 || trackMatrix[i - 1, j] == 0)
         {
              GameObject barrier = Instantiate(barrierPrefab, position + new Vector3(0, 0, -scale / 2), Quaternion.identity);
              barrier.transform.SetParent(barrierParent.transform);
+             barrier.tag = "Wall";
         }
         if (i == rows - 1 || trackMatrix[i + 1, j] == 0)
         {
              GameObject barrier = Instantiate(barrierPrefab, position + new Vector3(0, 0, scale / 2), Quaternion.identity);
              barrier.transform.SetParent(barrierParent.transform);
+             barrier.tag = "Wall";
         }
     }
 
@@ -250,5 +254,26 @@ void CreateWaypoint(Vector3 position)
         int cols = trackMatrix.GetLength(1);
         Vector2Int start = new Vector2Int(2, 2); // Start position
         return DepthFirstSearch(start, rows, cols);
+    }
+    public List<Transform> GetSortedWaypointList()
+    {
+        List<Vector2Int> sortedWaypoints = GetSortedWaypoints();
+        List<Transform> sortedWaypointTransforms = new List<Transform>();
+
+        foreach (Vector2Int waypoint in sortedWaypoints)
+        {
+            Vector3 position = new Vector3(waypoint.y * scale, 0, waypoint.x * scale);
+            // Find the corresponding waypoint transform
+            foreach (Transform child in waypointsParent.transform)
+            {
+                if (Vector3.Distance(child.position, position) < 10f)
+                {
+                    sortedWaypointTransforms.Add(child);
+                    break;
+                }
+            }
+        }
+
+        return sortedWaypointTransforms;
     }
 }

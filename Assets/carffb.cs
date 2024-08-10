@@ -48,7 +48,7 @@ namespace UnityFFB
                 float steeringAngle = carController.CurrentSteerAngle;
                // Debug.Log("current steering: "+steeringAngle);
                 int forceValue = (int)(speed * speedFactor + math.abs(steeringAngle) * steeringFactor*0.01f);
-                forceValue = 5;
+                forceValue = 10;
                 if (steeringAngle > 0)
                 {
                     ffb.force = forceValue;
