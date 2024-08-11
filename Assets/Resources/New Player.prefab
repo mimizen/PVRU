@@ -458,6 +458,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3839780969090237058}
     m_Modifications:
+    - target: {fileID: 5330170727594515961, guid: 5616340a900dfe64e8bd1fd6836c1177, type: 3}
+      propertyPath: m_Topspeed
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5330170727594528469, guid: 5616340a900dfe64e8bd1fd6836c1177, type: 3}
+      propertyPath: Wheel
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5330170727594528469, guid: 5616340a900dfe64e8bd1fd6836c1177, type: 3}
+      propertyPath: speed
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 5330170727594528469, guid: 5616340a900dfe64e8bd1fd6836c1177, type: 3}
       propertyPath: inputActionAsset
       value: 
@@ -547,6 +559,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5330170727601040259, guid: 5616340a900dfe64e8bd1fd6836c1177, type: 3}
       insertIndex: -1
       addedObject: {fileID: 38840554674992607}
+    - targetCorrespondingSourceObject: {fileID: 5330170727601040259, guid: 5616340a900dfe64e8bd1fd6836c1177, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7923130590605588967}
   m_SourcePrefab: {fileID: 100100000, guid: 5616340a900dfe64e8bd1fd6836c1177, type: 3}
 --- !u!4 &1652428654569495476 stripped
 Transform:
@@ -602,6 +617,21 @@ MonoBehaviour:
   turnSpeed: 5
   maxSteerAngle: 20
   maxRotationAngle: 80
+  collisionTurnAngle: 30
+--- !u!114 &7923130590605588967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1652428654569833374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47778d6f912ddcf46a92a2e6f8be2573, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  comPort: COM3
+  carController: {fileID: 1652428654579512804}
 --- !u!114 &1652428654579512804 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5330170727594515961, guid: 5616340a900dfe64e8bd1fd6836c1177, type: 3}
