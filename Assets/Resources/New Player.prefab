@@ -56,6 +56,7 @@ MonoBehaviour:
   - {fileID: 7259674747059957970}
   - {fileID: 1011587019006539568}
   - {fileID: 2827496591093844606}
+  - {fileID: 5226886442528652512}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -71,7 +72,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b51738cc00952544bbf9e1fae375bf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 0}
+  playerPrefab: {fileID: 216890732894701541}
   head: {fileID: 5902033553631190782}
   leftHand: {fileID: 8249049817794933903}
   rightHand: {fileID: 6709498644674919234}
@@ -571,12 +572,36 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5330170727601040259, guid: 5616340a900dfe64e8bd1fd6836c1177, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7923130590605588967}
+    - targetCorrespondingSourceObject: {fileID: 5330170727601271421, guid: 5616340a900dfe64e8bd1fd6836c1177, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5226886442528652512}
   m_SourcePrefab: {fileID: 100100000, guid: 5616340a900dfe64e8bd1fd6836c1177, type: 3}
 --- !u!4 &1652428654569495476 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5330170727601353641, guid: 5616340a900dfe64e8bd1fd6836c1177, type: 3}
   m_PrefabInstance: {fileID: 6851673857994500125}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1652428654569609824 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5330170727601271421, guid: 5616340a900dfe64e8bd1fd6836c1177, type: 3}
+  m_PrefabInstance: {fileID: 6851673857994500125}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5226886442528652512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1652428654569609824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &1652428654569833374 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5330170727601040259, guid: 5616340a900dfe64e8bd1fd6836c1177, type: 3}

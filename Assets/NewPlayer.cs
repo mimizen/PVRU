@@ -25,6 +25,7 @@ public class NewPlayer : MonoBehaviour
             rightHand.gameObject.SetActive(false);
             leftHand.gameObject.SetActive(false);
             head.gameObject.SetActive(false);
+            playerPrefab.GetComponentInChildren<Camera>().enabled = false;
         }
     }
 

@@ -8,7 +8,6 @@ public class SpawnPlayer : MonoBehaviourPunCallbacks
 {
     public Transform[] spawnPoints; 
     private GameObject spawnedPlayerPrefab;
-
     public override void OnJoinedRoom()
     {
         base.OnJoinedRoom();
@@ -16,15 +15,6 @@ public class SpawnPlayer : MonoBehaviourPunCallbacks
         int playerIndex = PhotonNetwork.CurrentRoom.PlayerCount - 1;
         Transform spawnPoint = spawnPoints[playerIndex % spawnPoints.Length];
         spawnedPlayerPrefab = PhotonNetwork.Instantiate("New Player", spawnPoint.position, spawnPoint.rotation);
-
-        if (photonView.IsMine)
-        {
-            spawnedPlayerPrefab.GetComponentInChildren<Camera>().enabled = true;
-        } else
-        {
-            spawnedPlayerPrefab.GetComponentInChildren<Camera>().enabled = false;
-
-        }
     }
 
     public override void OnLeftRoom()
