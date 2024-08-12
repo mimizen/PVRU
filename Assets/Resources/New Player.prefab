@@ -49,10 +49,11 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  Synchronization: 3
+  Synchronization: 1
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
+  - {fileID: 0}
   - {fileID: 7259674747059957970}
   - {fileID: 1011587019006539568}
   - {fileID: 2827496591093844606}
