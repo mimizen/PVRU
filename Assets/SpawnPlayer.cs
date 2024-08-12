@@ -22,7 +22,7 @@ public class SpawnPlayer : MonoBehaviourPunCallbacks
             spawnedPlayerPrefab.GetComponentInChildren<Camera>().enabled = true;
         } else
         {
-            spawnedPlayerPrefab.GetComponentInChildren<Camera>().enabled = true;
+            spawnedPlayerPrefab.GetComponentInChildren<Camera>().enabled = false;
 
         }
     }
