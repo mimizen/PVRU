@@ -6,7 +6,7 @@ using Photon.Realtime;
 
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
-    // Start is called before the first frame update
+   /* // Start is called before the first frame update
     void Start()
     {
         ConnectToServer();
@@ -36,9 +36,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         base.OnJoinedRoom();
     }
 
-    public override void OnPlayerEnteredRoom(Player newPlayer)
-    {
+    //public override void OnPlayerEnteredRoom(Player newPlayer)
+    /*{
         Debug.Log("A new player joined the room");
         base.OnPlayerEnteredRoom(newPlayer);
-    }
+    }*/
 }
