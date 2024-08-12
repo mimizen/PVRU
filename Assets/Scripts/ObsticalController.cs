@@ -18,7 +18,9 @@ public class ObstacleController : MonoBehaviour
     {
         waypoints = trackGenerator.GetSortedWaypoints();
         waypoints.RemoveAt(0); // Remove the first waypoint as it is the starting position
-        currentWaypointIndex = startPosition % waypoints.Count;
+        
+        // Start from the end of the list instead
+        currentWaypointIndex = (waypoints.Count - 1) - (startPosition % waypoints.Count);
         this.transform.position = new Vector3(waypoints[currentWaypointIndex].y * trackGenerator.scale, 0, waypoints[currentWaypointIndex].x * trackGenerator.scale);
         UpdateTargetPosition();
     }
@@ -35,7 +37,8 @@ public class ObstacleController : MonoBehaviour
 
         if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
         {
-            currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Count;
+            // Decrement the waypoint index instead of incrementing it
+            currentWaypointIndex = (currentWaypointIndex - 1 + waypoints.Count) % waypoints.Count;
             UpdateTargetPosition();
         }
     }
@@ -46,15 +49,15 @@ public class ObstacleController : MonoBehaviour
         Vector3 position = new Vector3(waypoint.y * trackGenerator.scale, 0, waypoint.x * trackGenerator.scale);
         Vector3 direction = Vector3.zero;
 
-        if (currentWaypointIndex < waypoints.Count - 1)
+        if (currentWaypointIndex > 0)
         {
-            Vector2Int nextWaypoint = waypoints[(currentWaypointIndex + 1) % waypoints.Count];
+            Vector2Int nextWaypoint = waypoints[(currentWaypointIndex - 1 + waypoints.Count) % waypoints.Count];
             Vector3 nextPosition = new Vector3(nextWaypoint.y * trackGenerator.scale, 0, nextWaypoint.x * trackGenerator.scale);
             direction = (nextPosition - position).normalized;
         }
         else if (waypoints.Count > 1)
         {
-            Vector2Int nextWaypoint = waypoints[0];
+            Vector2Int nextWaypoint = waypoints[waypoints.Count - 1];
             Vector3 nextPosition = new Vector3(nextWaypoint.y * trackGenerator.scale, 0, nextWaypoint.x * trackGenerator.scale);
             direction = (nextPosition - position).normalized;
         }

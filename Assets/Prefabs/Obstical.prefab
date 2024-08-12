@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trackGenerator: {fileID: 0}
-  speed: 5
+  speed: 3
   startPosition: 5
   offset: 0
   waypoints: []
