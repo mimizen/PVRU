@@ -71,6 +71,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b51738cc00952544bbf9e1fae375bf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 0}
   head: {fileID: 5902033553631190782}
   leftHand: {fileID: 8249049817794933903}
   rightHand: {fileID: 6709498644674919234}

@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
 using Photon.Pun;
+using Photon.Realtime;
 
 public class NewPlayer : MonoBehaviour
 {
+    [SerializeField] private GameObject playerPrefab;
     public Transform head;
     public Transform leftHand;
     public Transform rightHand;
