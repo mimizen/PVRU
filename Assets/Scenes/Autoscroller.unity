@@ -595,9 +595,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9d421a9ef991342a70e4a559fbec69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trackPrefab: {fileID: 1424802929729179444, guid: 2f41223459f4fb44b9b707fefead1ace, type: 3}
   player: {fileID: 61144703}
-  regenerationDistance: 50
+  regenerationDistance: 30
+  trackAndBarrierMeshGenerator: {fileID: 1102900347}
+  startDelay: 3
 --- !u!4 &783392060
 Transform:
   m_ObjectHideFlags: 0
@@ -837,7 +838,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1102900346}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 79f985c80519f3b4faca8e5a0c4ec1f7, type: 3}
   m_Name: 
@@ -848,8 +849,8 @@ MonoBehaviour:
   trackWidth: 10
   barrierHeight: 1
   barrierWidth: 0.5
-  resolution: 10
-  pathString: SSSSRRLLRRR
+  resolution: 30
+  pathString: SSSSSSSSSSSRRRSSSLLLRRRSSSSSLLLLLLSSSS
   trackMeshFilter: {fileID: 1171000111}
   barrierMeshFilter: {fileID: 882393484}
   trackMeshCollider: {fileID: 1171000109}
