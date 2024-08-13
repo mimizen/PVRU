@@ -485,7 +485,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5330170727594515961, guid: 5616340a900dfe64e8bd1fd6836c1177, type: 3}
       propertyPath: m_CarDriveType
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5330170727594515961, guid: 5616340a900dfe64e8bd1fd6836c1177, type: 3}
       propertyPath: m_TractionControl
@@ -497,12 +497,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5330170727594528469, guid: 5616340a900dfe64e8bd1fd6836c1177, type: 3}
       propertyPath: speed
-      value: 1
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 5330170727594528469, guid: 5616340a900dfe64e8bd1fd6836c1177, type: 3}
       propertyPath: inputActionAsset
       value: 
-      objectReference: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+      objectReference: {fileID: -944628639613478452, guid: 652ee45a07dbbcd4398fb6c2137dd997, type: 3}
     - target: {fileID: 5330170727595899615, guid: 5616340a900dfe64e8bd1fd6836c1177, type: 3}
       propertyPath: m_IsKinematic
       value: 1
@@ -567,7 +567,8 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.y
       value: 0.672368
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5330170727594528469, guid: 5616340a900dfe64e8bd1fd6836c1177, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5330170727601353641, guid: 5616340a900dfe64e8bd1fd6836c1177, type: 3}

@@ -1,0 +1,34 @@
+{
+    "name": "Wheel",
+    "maps": [
+        {
+            "name": "WheelSteering",
+            "id": "8e780376-3247-431f-9055-312a540a3ef4",
+            "actions": [
+                {
+                    "name": "Steering",
+                    "type": "Value",
+                    "id": "dbbcc5a2-c4fe-4c48-9907-a30f56503e69",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "680a1670-1bf6-4484-883c-f52272fa671d",
+                    "path": "<HID::G25 Racing Wheel>/stick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Steering",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

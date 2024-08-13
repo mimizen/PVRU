@@ -46,7 +46,7 @@ public class NewPlayer : MonoBehaviour
             leftHand.gameObject.SetActive(false);
             head.gameObject.SetActive(false);
             carController.enabled = false;
-            carUserControl.enabled = false;
+            //carUserControl.enabled = false;
             carFFB.enabled = false;
             carPowerUpController.enabled = false;
             serialCommunication.enabled = false;
@@ -66,7 +66,7 @@ public class NewPlayer : MonoBehaviour
             rightHand.gameObject.SetActive(true);
 
             carController.enabled = true;
-            carUserControl.enabled = true;
+            //carUserControl.enabled = true;
             carFFB.enabled = true;
             carPowerUpController.enabled = true;
             serialCommunication.enabled = true;
@@ -83,7 +83,7 @@ public class NewPlayer : MonoBehaviour
             leftHand.gameObject.SetActive(false);
             rightHand.gameObject.SetActive(false);
             carController.enabled = false;
-            carUserControl.enabled = false;
+            //carUserControl.enabled = false;
             carFFB.enabled = false;
             carPowerUpController.enabled = false;
             serialCommunication.enabled = false;
