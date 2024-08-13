@@ -55,6 +55,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 2140009817764452230}
+  - {fileID: 7235989293624988731}
   - {fileID: 7259674747059957970}
   - {fileID: 1011587019006539568}
   - {fileID: 2827496591093844606}
@@ -496,7 +497,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5330170727594528469, guid: 5616340a900dfe64e8bd1fd6836c1177, type: 3}
       propertyPath: speed
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5330170727594528469, guid: 5616340a900dfe64e8bd1fd6836c1177, type: 3}
       propertyPath: inputActionAsset
@@ -594,6 +595,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5330170727601040259, guid: 5616340a900dfe64e8bd1fd6836c1177, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7923130590605588967}
+    - targetCorrespondingSourceObject: {fileID: 5330170727601040259, guid: 5616340a900dfe64e8bd1fd6836c1177, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7235989293624988731}
     - targetCorrespondingSourceObject: {fileID: 5330170727601271421, guid: 5616340a900dfe64e8bd1fd6836c1177, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5226886442528652512}
@@ -688,6 +692,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   comPort: COM3
   carController: {fileID: 1652428654579512804}
+--- !u!114 &7235989293624988731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1652428654569833374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizeVelocity: 1
+  m_SynchronizeAngularVelocity: 1
+  m_TeleportEnabled: 1
+  m_TeleportIfDistanceGreaterThan: 3
 --- !u!114 &1652428654579512804 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5330170727594515961, guid: 5616340a900dfe64e8bd1fd6836c1177, type: 3}

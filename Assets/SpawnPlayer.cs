@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class SpawnPlayer : MonoBehaviourPunCallbacks
 {
-    public Transform[] spawnPoints; 
+    public Transform[] spawnPoints;
     private GameObject spawnedPlayerPrefab;
 
     void Start()
@@ -15,17 +15,18 @@ public class SpawnPlayer : MonoBehaviourPunCallbacks
         // Instantiate the player when the scene loads, if not already instantiated
         if (SceneManager.GetActiveScene().name == "SceneMichelle" && spawnedPlayerPrefab == null && PhotonNetwork.CurrentRoom != null)
         {
-            int playerIndex = PhotonNetwork.CurrentRoom.PlayerCount - 1;
-            Transform spawnPoint = spawnPoints[playerIndex % spawnPoints.Length];
+            int playerIndex = (PhotonNetwork.LocalPlayer.ActorNumber - 1) % spawnPoints.Length;
+            Transform spawnPoint = spawnPoints[playerIndex];
             spawnedPlayerPrefab = PhotonNetwork.Instantiate("New Player", spawnPoint.position, spawnPoint.rotation);
         }
     }
+
     public override void OnJoinedRoom()
     {
         base.OnJoinedRoom();
 
-        int playerIndex = PhotonNetwork.CurrentRoom.PlayerCount - 1;
-        Transform spawnPoint = spawnPoints[playerIndex % spawnPoints.Length];
+        int playerIndex = (PhotonNetwork.LocalPlayer.ActorNumber - 1) % spawnPoints.Length;
+        Transform spawnPoint = spawnPoints[playerIndex];
         spawnedPlayerPrefab = PhotonNetwork.Instantiate("New Player", spawnPoint.position, spawnPoint.rotation);
     }
 
