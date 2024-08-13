@@ -3,7 +3,7 @@ using Photon.Pun;
 
 namespace Com.MyCompany.MyGame
 {
-    public class Launcher : MonoBehaviour
+    public class Launcher : MonoBehaviourPunCallbacks
     {
         #region Private Serializable Fields
 
@@ -33,13 +33,21 @@ namespace Com.MyCompany.MyGame
         /// <summary>
         /// MonoBehaviour method called on GameObject by Unity during initialization phase.
         /// </summary>
-        void Start()
+        /*void Start()
         {
             Connect();
-        }
+        }*/
 
         #endregion
 
+        void Update()
+        {
+            // Check if the space key is pressed and if the player is the Master Client
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                StartGame();
+            }
+        }
 
         #region Public Methods
 
@@ -48,7 +56,7 @@ namespace Com.MyCompany.MyGame
         /// - If already connected, we attempt joining a random room
         /// - if not yet connected, Connect this application instance to Photon Cloud Network
         /// </summary>
-        public void Connect()
+        /* public void Connect()
         {
             // we check if we are connected or not, we join if we are , else we initiate the connection to the server.
             if (PhotonNetwork.IsConnected)
@@ -64,7 +72,24 @@ namespace Com.MyCompany.MyGame
             }
         }
 
-    #endregion
+        public override void OnJoinedRoom()
+        {
+            Debug.Log("Joined Room - Waiting for players...");
+            // Additional code can be added here to handle player UI in the lobby
+        } */
+
+        // Call this function when the Play button is clicked
+        public void StartGame()
+        {
+            if (PhotonNetwork.IsMasterClient)
+            {
+                Debug.Log("Master client is starting the game");
+                PhotonNetwork.LoadLevel("SceneMichelle"); 
+            }
+
+        }
+
+        #endregion
 
     }
 }
