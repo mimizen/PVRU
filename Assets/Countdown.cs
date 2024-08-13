@@ -5,7 +5,7 @@ using Photon.Pun;
 public class Countdown : MonoBehaviourPun
 {
     public int countdownTime = 3;
-    public GameObject countdownText; // Reference to a UI Text or TMP_Text for displaying the countdown (optional)
+    public GameObject countdownText;
 
     //[SerializeField] private GameObject playerPrefab;
 
@@ -17,7 +17,6 @@ public class Countdown : MonoBehaviourPun
 
     IEnumerator CountdownRoutine()
     {
-        // Optional: Show the countdown on the screen if you have a UI element
         while (countdownTime > 0)
         {
             photonView.RPC("UpdateCountdownText", RpcTarget.All, countdownTime.ToString()); // Updates countdown text across all clients
@@ -26,7 +25,7 @@ public class Countdown : MonoBehaviourPun
         }
 
         // Final countdown at 1, then disable isKinematic
-        photonView.RPC("UpdateCountdownText", RpcTarget.All, "GO!"); // Updates the text to "GO!" on all clients
+        photonView.RPC("UpdateCountdownText", RpcTarget.All, "GO!"); 
 
         // Disable isKinematic on all player prefabs
         photonView.RPC("EnablePlayerMovement", RpcTarget.All);
@@ -38,6 +37,11 @@ public class Countdown : MonoBehaviourPun
         if (countdownText != null)
         {
             countdownText.GetComponent<TMPro.TMP_Text>().text = text;
+        }
+
+        if (countdownText.GetComponent<TMPro.TMP_Text>().text == "GO!")
+        {
+            StartCoroutine(DisableCountdown());
         }
     }
 
@@ -58,5 +62,11 @@ public class Countdown : MonoBehaviourPun
                 }
             }
         }
+    }
+
+    IEnumerator DisableCountdown()
+    {
+        yield return new WaitForSeconds(1f);
+        countdownText.SetActive(false);
     }
 }
