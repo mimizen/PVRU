@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3839780969090237058}
   - component: {fileID: 973815335227308962}
   - component: {fileID: 1258179615091639582}
+  - component: {fileID: 2140009817764452230}
   m_Layer: 0
   m_Name: New Player
   m_TagString: Player
@@ -53,7 +54,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
-  - {fileID: 0}
+  - {fileID: 2140009817764452230}
   - {fileID: 7259674747059957970}
   - {fileID: 1011587019006539568}
   - {fileID: 2827496591093844606}
@@ -77,6 +78,22 @@ MonoBehaviour:
   head: {fileID: 5902033553631190782}
   leftHand: {fileID: 8249049817794933903}
   rightHand: {fileID: 6709498644674919234}
+--- !u!114 &2140009817764452230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 216890732894701541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &973136462403376745
 GameObject:
   m_ObjectHideFlags: 0
@@ -479,12 +496,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5330170727594528469, guid: 5616340a900dfe64e8bd1fd6836c1177, type: 3}
       propertyPath: speed
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5330170727594528469, guid: 5616340a900dfe64e8bd1fd6836c1177, type: 3}
       propertyPath: inputActionAsset
       value: 
       objectReference: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    - target: {fileID: 5330170727595899615, guid: 5616340a900dfe64e8bd1fd6836c1177, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5330170727601038973, guid: 5616340a900dfe64e8bd1fd6836c1177, type: 3}
       propertyPath: m_IsActive
       value: 0

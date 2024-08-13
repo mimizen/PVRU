@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.XR;
 using Photon.Pun;
 using Photon.Realtime;
+using UnityStandardAssets.Vehicles.Car;
+using UnityFFB;
 
 public class NewPlayer : MonoBehaviour
 {
@@ -13,9 +15,27 @@ public class NewPlayer : MonoBehaviour
     public Transform rightHand;
     private PhotonView photonView;
 
+    private CarController carController;
+
+    private CarUserControl carUserControl;
+
+    private CarFFB carFFB;
+
+    private CarPowerUpController carPowerUpController;
+
+    private SerialCommunication serialCommunication;
+
+    private Rigidbody rb;
+
     // Start is called before the first frame update
     void Start()
     {
+        carController = this.GetComponentInChildren<CarController>();
+        carUserControl = this.GetComponentInChildren<CarUserControl>();
+        carFFB = this.GetComponentInChildren<CarFFB>();
+        carPowerUpController = this.GetComponentInChildren<CarPowerUpController>();
+        serialCommunication = this.GetComponentInChildren<SerialCommunication>();
+        rb = this.GetComponentInChildren<Rigidbody>();
         photonView = GetComponent<PhotonView>();
 
         // Disable the hands and head for remote players
@@ -25,6 +45,12 @@ public class NewPlayer : MonoBehaviour
             rightHand.gameObject.SetActive(false);
             leftHand.gameObject.SetActive(false);
             head.gameObject.SetActive(false);
+            carController.enabled = false;
+            carUserControl.enabled = false;
+            carFFB.enabled = false;
+            carPowerUpController.enabled = false;
+            serialCommunication.enabled = false;
+            rb.isKinematic = true;
             playerPrefab.GetComponentInChildren<Camera>().enabled = false;
         }
     }
@@ -39,6 +65,13 @@ public class NewPlayer : MonoBehaviour
             leftHand.gameObject.SetActive(true);
             rightHand.gameObject.SetActive(true);
 
+            carController.enabled = true;
+            carUserControl.enabled = true;
+            carFFB.enabled = true;
+            carPowerUpController.enabled = true;
+            serialCommunication.enabled = true;
+            //rb.isKinematic = false; if i set false my car would fall down.
+
             MapPosition(head, XRNode.Head);
             MapPosition(leftHand, XRNode.LeftHand);
             MapPosition(rightHand, XRNode.RightHand);
@@ -49,6 +82,12 @@ public class NewPlayer : MonoBehaviour
             head.gameObject.SetActive(false);
             leftHand.gameObject.SetActive(false);
             rightHand.gameObject.SetActive(false);
+            carController.enabled = false;
+            carUserControl.enabled = false;
+            carFFB.enabled = false;
+            carPowerUpController.enabled = false;
+            serialCommunication.enabled = false;
+            rb.isKinematic = true;
         }
     }
 
