@@ -215,4 +215,8 @@ public class TrackAndBarrierMeshGenerator : MonoBehaviour
         barrierMeshFilter.mesh = AssetDatabase.LoadAssetAtPath<Mesh>(barrierMeshPath);
         #endif
     }
+    public GameObject returnTrackWithBarrier()
+    {
+        return trackWithBarrier;
+    }
 }
