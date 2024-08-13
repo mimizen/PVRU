@@ -9,11 +9,12 @@ public class PlayerPrefabManager : MonoBehaviourPunCallbacks
     void Start()
     {
         // Check if this prefab belongs to the local player
-        if (!photonView.IsMine)
+       /* if (!photonView.IsMine)
         {
             // If it doesn't belong to the local player, deactivate the specified components
             DeactivateComponents();
         }
+        */
     }
 
     void DeactivateComponents()
