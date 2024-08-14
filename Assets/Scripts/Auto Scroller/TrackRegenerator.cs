@@ -4,17 +4,24 @@ using System.Collections.Generic;
 
 public class TrackRegenerator : MonoBehaviour
 {
-    private GameObject trackPrefab; // Prefab to instantiate
-    public Transform player; // Reference to the player's transform
-    public float regenerationDistance = 50f; // Distance to the end of the track for regeneration
+    private GameObject trackPrefab; // Prefab to instantiate, kept private
+    public Transform player; // Reference to the player's transform (can be removed if not used anymore)
+    public float regenerationDistance = 500f; // Distance to the end of the track for regeneration
     private List<GameObject> trackList = new List<GameObject>(); // List to keep track of generated tracks
+    private List<Transform[]> checkpointsList = new List<Transform[]>(); // List of checkpoints arrays for each track
     private Transform lastCheckpoint; // Reference to the last checkpoint
+    public GameObject trackParent; // Parent GameObject to store all track pieces
 
     public TrackAndBarrierMeshGenerator trackAndBarrierMeshGenerator;
     public float startDelay = 2f; // Delay before starting
 
     void Start()
     {
+        if (trackParent == null)
+        {
+            trackParent = new GameObject("TrackParent");
+        }
+
         StartCoroutine(DelayedStart());
     }
 
@@ -31,49 +38,94 @@ public class TrackRegenerator : MonoBehaviour
             yield break;
         }
 
-        trackList.Add(trackPrefab); // Add the initial track to the list
-        UpdateLastCheckpoint(); // Set the last checkpoint from the initial track
+        trackPrefab.transform.SetParent(trackParent.transform);
+        trackPrefab.name = "TrackWithBarrier 1";
+        trackList.Add(trackPrefab);
+        StoreCheckpoints(trackPrefab);
+
+        StartCoroutine(CheckAndRegenerateTrackRoutine()); // Start routine for checking and regenerating the track
     }
 
-    void Update()
+    IEnumerator CheckAndRegenerateTrackRoutine()
     {
-        CheckAndRegenerateTrack();
+        yield return new WaitForSeconds(startDelay); // Initial delay to start the routine
+
+        while (true)
+        {
+            CheckAndRegenerateTrack();
+            yield return new WaitForSeconds(0.1f); // Check and regenerate every 2 seconds
+        }
     }
 
     void GenerateNewTrack(Vector3 position, Quaternion rotation)
     {
         GameObject newTrack = Instantiate(trackPrefab, position, rotation);
-
-        // Find Checkpoint_0 in the newly instantiated track
-        Transform checkpoint0 = newTrack.transform.Find("Checkpoint_0");
-
-        if (checkpoint0 == null)
-        {
-            Debug.LogError("Checkpoint_0 is missing in the new track!");
-            return;
-        }
+        trackPrefab = newTrack;
+        newTrack.transform.SetParent(trackParent.transform);
 
         if (lastCheckpoint != null)
         {
             // Align Checkpoint_0 with the last checkpoint's position and rotation
-            Vector3 offset = checkpoint0.position - newTrack.transform.position;
-            newTrack.transform.position = lastCheckpoint.position - offset;
-            newTrack.transform.rotation = lastCheckpoint.rotation;
+            Transform checkpoint0 = newTrack.transform.Find("Checkpoint_0");
+            if (checkpoint0 != null)
+            {
+                Vector3 offset = checkpoint0.position - newTrack.transform.position;
+                newTrack.transform.position = lastCheckpoint.position - offset;
+                newTrack.transform.rotation = lastCheckpoint.rotation;
+            }
+            else
+            {
+                Debug.LogError("Checkpoint_0 is missing in the new track!");
+                return;
+            }
         }
 
-        // Update the track list and trackPrefab reference
+        // Manage track list and renaming
         trackList.Add(newTrack);
-        trackPrefab = newTrack; // Reassign trackPrefab to the newly created track
+        StoreCheckpoints(newTrack);
 
         if (trackList.Count > 4)
         {
-            // Delete the oldest track to maintain a list of 4
+            // Destroy the oldest track
             Destroy(trackList[0]);
             trackList.RemoveAt(0);
+            checkpointsList.RemoveAt(0);
         }
+
+        RenameTracks();
 
         // Update the last checkpoint reference for the next track generation
         UpdateLastCheckpoint();
+    }
+
+   void StoreCheckpoints(GameObject track)
+{
+    List<Transform> checkpoints = new List<Transform>();
+
+    foreach (Transform child in track.transform)
+    {
+        if (child.name.StartsWith("Checkpoint_"))
+        {
+            checkpoints.Add(child);
+        }
+    }
+
+    if (checkpoints.Count > 0)
+    {
+        // Set lastCheckpoint to the last checkpoint in the current track
+        lastCheckpoint = checkpoints[checkpoints.Count - 1];
+    }
+
+    checkpointsList.Add(checkpoints.ToArray());
+}
+
+
+    void RenameTracks()
+    {
+        for (int i = 0; i < trackList.Count; i++)
+        {
+            trackList[i].name = "TrackWithBarrier " + (i + 1);
+        }
     }
 
     void UpdateLastCheckpoint()
@@ -118,15 +170,55 @@ public class TrackRegenerator : MonoBehaviour
 
     void CheckAndRegenerateTrack()
     {
-        if (lastCheckpoint != null)
-        {
-            float distanceToLastCheckpoint = Vector3.Distance(player.position, lastCheckpoint.position);
+        // Find the closest player
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
 
-            if (distanceToLastCheckpoint < regenerationDistance)
+        if (players.Length == 0)
+        {
+            Debug.LogError("No players found with the 'Player' tag.");
+            return;
+        }
+        //for each palayer get child transform;
+        
+        Transform closestPlayer = null;
+        float closestDistance = Mathf.Infinity;
+
+        foreach (GameObject player in players)
+        {
+            float distanceToLastCheckpoint = Vector3.Distance(player.transform.position, lastCheckpoint.position);
+            if (distanceToLastCheckpoint < closestDistance)
             {
-                Vector3 newTrackPosition = lastCheckpoint.position + lastCheckpoint.forward * 10f;
-                GenerateNewTrack(newTrackPosition, lastCheckpoint.rotation);
+                closestDistance = distanceToLastCheckpoint;
+                closestPlayer = player.transform;
             }
         }
+
+        // Regenerate track based on the closest player
+        if (closestPlayer != null && closestDistance < regenerationDistance)
+        {
+            Vector3 newTrackPosition = lastCheckpoint.position + lastCheckpoint.forward * 10f;
+            GenerateNewTrack(newTrackPosition, lastCheckpoint.rotation);
+        }
+    }
+
+    // Get the last checkpoint of the frontmost track (TrackWithBarrier 4 or the last existing track)
+    public Transform GetLastCheckpointOfFrontTrack()
+    {
+        if (trackList.Count > 0)
+        {
+            Transform[] checkpoints = checkpointsList[trackList.Count - 1]; // Frontmost track's checkpoints
+            return checkpoints[checkpoints.Length - 1]; // Last checkpoint of the frontmost track
+        }
+        return null;
+    }
+
+    // Get all checkpoints of the frontmost track (TrackWithBarrier 4 or the last existing track)
+    public Transform[] GetCheckpointsOfFrontTrack()
+    {
+        if (trackList.Count > 0)
+        {
+            return checkpointsList[trackList.Count - 1]; // Frontmost track's checkpoints
+        }
+        return null;
     }
 }
