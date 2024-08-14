@@ -50,7 +50,7 @@ public class AsteroidSpawner : MonoBehaviourPun
         while (spawnContinuously)
         {
             SpawnAsteroid();
-            yield return new WaitForSeconds(2f); // Wait for 2 seconds before spawning the next asteroid
+            yield return new WaitForSeconds(0.5f); // Wait for 2 seconds before spawning the next asteroid
         }
     }
 }
