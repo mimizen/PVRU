@@ -1024,13 +1024,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63f49ce4473689741ab5b0e0d6831749, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableOnAwake: 0
+  enableOnAwake: 1
   autoSelectFirstDevice: 1
   disableAutoCenter: 0
-  addConstantForce: 0
-  addSpringForce: 0
-  force: 10
-  sensitivity: 1
+  addConstantForce: 1
+  addSpringForce: 1
+  force: 0
+  sensitivity: 30
   axisDirections: 
   devices: []
   axes: []

@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class TrackRegenerator : MonoBehaviour
 {
@@ -244,4 +245,35 @@ public class TrackRegenerator : MonoBehaviour
     {
         return checkpointsList;
     }
+    public Transform[] GetAllCheckpoints()
+    {
+        return checkpointsList.SelectMany(checkpoints => checkpoints).ToArray();
+    }
+
+    public List<Vector3> GetCheckpointsPositions()
+    {
+        List<Vector3> positions = new List<Vector3>();
+
+        foreach (Transform[] checkpoints in checkpointsList)
+        {
+            foreach (Transform checkpoint in checkpoints)
+            {
+                positions.Add(checkpoint.position);
+            }
+        }
+
+        return positions;
+    }
+    public List<Vector3> GetCheckpointsPositions(int index)
+    {
+        List<Vector3> positions = new List<Vector3>();
+
+        foreach (Transform checkpoint in checkpointsList[index])
+        {
+            positions.Add(checkpoint.position);
+        }
+
+        return positions;
+    }
+    
 }

@@ -28,7 +28,7 @@ public class AsteroidSpawner : MonoBehaviourPun
         if (PhotonNetwork.IsMasterClient) // Ensure only the master client spawns the asteroid
         {
             Transform lastCheckpoint = trackRegenerator.GetLastCheckpointOfFrontTrack();
-            Transform[] checkpoints = trackRegenerator.GetCheckpointsOfFrontTrack();
+            Transform[] checkpoints = trackRegenerator.GetAllCheckpoints();
 
             if (lastCheckpoint != null && checkpoints != null)
             {

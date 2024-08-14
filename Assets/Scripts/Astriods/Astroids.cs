@@ -69,6 +69,11 @@ public class Asteroid : MonoBehaviourPun, IPunObservable
 
     private void MoveTowardsCheckpoint()
     {
+        if(checkpoints[currentCheckpointIndex]==null)
+        {
+            Destroy(gameObject);
+            return;
+        }
         // Move towards the current checkpoint
         Transform targetCheckpoint = checkpoints[currentCheckpointIndex];
         Vector3 targetPosition = targetCheckpoint.position + offset;
