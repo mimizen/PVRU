@@ -627,7 +627,10 @@ MonoBehaviour:
   carController: {fileID: 1652428654579512804}
   speedFactor: 1
   steeringFactor: 1
-  collisionForce: 2000
+  playerCollisionForce: 700
+  wallCollisionForce: 500
+  tractionForceFactor: 2
+  slipThreshold: 0.2
 --- !u!114 &8939252126271797947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -647,13 +650,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1652428654569833374}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6945cffcfa469d4d871bb3f4e597416, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  turnSpeed: 5
+  turnSpeed: 0.5
   maxSteerAngle: 20
   maxRotationAngle: 80
   collisionTurnAngle: 30

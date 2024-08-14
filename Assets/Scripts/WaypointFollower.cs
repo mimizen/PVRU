@@ -13,24 +13,22 @@ public class WaypointFollower : MonoBehaviour
     public float collisionTurnAngle = 30f; // Maximum turn angle after collision
 
     private Rigidbody rb;
+    private TrackRegenerator trackRegenerator;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
 
-        // Get the sorted waypoints from the TrackGenerator
-        TrackGenerator trackGenerator = FindObjectOfType<TrackGenerator>();
-        if (trackGenerator != null)
+        // Get the TrackRegenerator and subscribe to the event
+        trackRegenerator = FindObjectOfType<TrackRegenerator>();
+        if (trackRegenerator != null)
         {
-            waypoints = trackGenerator.GetSortedWaypointList();
-            if (waypoints.Count > 0)
-            {
-                transform.position = waypoints[currentWaypointIndex].position;
-            }
+            trackRegenerator.OnNewCheckpointListGenerated.AddListener(UpdateWaypointsList);
+            UpdateWaypointsList(); // Initialize waypoints on start
         }
         else
         {
-            Debug.LogError("TrackGenerator not found!");
+            Debug.LogError("TrackRegenerator not found!");
         }
     }
 
@@ -83,6 +81,38 @@ public class WaypointFollower : MonoBehaviour
             Vector3 newDirection = Vector3.RotateTowards(transform.forward, nextWaypointDirection, Mathf.Deg2Rad * collisionTurnAngle, 0.0f);
             Quaternion newRotation = Quaternion.LookRotation(newDirection);
             transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, 5 * Time.deltaTime);
+        }
+    }
+
+    private void UpdateWaypointsList()
+    {
+        if (trackRegenerator != null)
+        {
+            waypoints = new List<Transform>();
+            foreach (var checkpointArray in trackRegenerator.GetWholeCheckpointsList())
+            {
+                waypoints.AddRange(checkpointArray); // Flatten the list of checkpoint arrays into a single list
+            }
+
+            if (waypoints.Count > 0)
+            {
+                FindClosestWaypoint();
+            }
+        }
+    }
+
+    private void FindClosestWaypoint()
+    {
+        float closestDistance = Mathf.Infinity;
+
+        for (int i = 0; i < waypoints.Count; i++)
+        {
+            float distance = Vector3.Distance(transform.position, waypoints[i].position);
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                currentWaypointIndex = i;
+            }
         }
     }
 }
