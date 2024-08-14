@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ThumbsUpLeft
       objectReference: {fileID: 0}
+    - target: {fileID: 3005601684205340120, guid: ce9491a5df028fd4ca0a5130dbaa4fec, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3005601684205340121, guid: ce9491a5df028fd4ca0a5130dbaa4fec, type: 3}
       propertyPath: _fingerFeatureStateProvider
       value: 
@@ -949,6 +953,10 @@ PrefabInstance:
     - target: {fileID: 3005601684205340120, guid: ce9491a5df028fd4ca0a5130dbaa4fec, type: 3}
       propertyPath: m_Name
       value: ThumbsUpRight
+      objectReference: {fileID: 0}
+    - target: {fileID: 3005601684205340120, guid: ce9491a5df028fd4ca0a5130dbaa4fec, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3005601684205340121, guid: ce9491a5df028fd4ca0a5130dbaa4fec, type: 3}
       propertyPath: _fingerFeatureStateProvider
