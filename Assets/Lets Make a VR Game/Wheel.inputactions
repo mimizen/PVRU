@@ -19,7 +19,7 @@
                 {
                     "name": "",
                     "id": "680a1670-1bf6-4484-883c-f52272fa671d",
-                    "path": "<HID::G25 Racing Wheel>/stick",
+                    "path": "<Joystick>/stick",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
