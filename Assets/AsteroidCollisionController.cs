@@ -13,7 +13,7 @@ public class AsteroidCollisionController : MonoBehaviourPun
         {
             // Check if the other object has a PhotonView and if it belongs to the local player but check in parent object
             //Debug.Log("Other: " + other + "  Parent: " + other.transform.parent);
-            PhotonView playerPhotonView = other.transform.parent.parent.parent.GetComponent<PhotonView>();
+            PhotonView playerPhotonView = other.transform.parent.parent.GetComponent<PhotonView>();
             //PhotonView playerPhotonView = other.GetComponent<PhotonView>();
             //Debug.Log("PlayerPhotonView: " + playerPhotonView+"  IsMine: "+playerPhotonView.IsMine+"collider: "+other);
 
