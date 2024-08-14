@@ -955,7 +955,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 5986457303650843364}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ed594282a7fa53e4b8c40a76661eefd5, type: 3}
   m_Name: 
@@ -3744,6 +3744,7 @@ MonoBehaviour:
   trackRegenerator: {fileID: 1728410342}
   offset: {x: 0, y: 0, z: 0}
   spawnContinuously: 1
+  asteroidParent: {fileID: 0}
 --- !u!1 &1627676973
 GameObject:
   m_ObjectHideFlags: 0
@@ -4634,6 +4635,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Input
       objectReference: {fileID: 0}
+    - target: {fileID: 8421838897406590368, guid: 63eaebc7744ff2f41beedb9f711ef876, type: 3}
+      propertyPath: Wheel
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8421838897406590368, guid: 63eaebc7744ff2f41beedb9f711ef876, type: 3}
+      propertyPath: speed
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5227,6 +5236,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3441258845132634873, guid: 64559ac086291614cae78fd65d292272, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3860906260505550704, guid: 64559ac086291614cae78fd65d292272, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3860906260505550704, guid: 64559ac086291614cae78fd65d292272, type: 3}
