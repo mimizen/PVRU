@@ -1,11 +1,11 @@
 using UnityEngine;
+using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
 
 public class TrackRegenerator : MonoBehaviour
 {
     private GameObject trackPrefab; // Prefab to instantiate, kept private
-    public Transform player; // Reference to the player's transform (can be removed if not used anymore)
     public float regenerationDistance = 500f; // Distance to the end of the track for regeneration
     private List<GameObject> trackList = new List<GameObject>(); // List to keep track of generated tracks
     private List<Transform[]> checkpointsList = new List<Transform[]>(); // List of checkpoints arrays for each track
@@ -15,11 +15,19 @@ public class TrackRegenerator : MonoBehaviour
     public TrackAndBarrierMeshGenerator trackAndBarrierMeshGenerator;
     public float startDelay = 2f; // Delay before starting
 
+    // UnityEvent that triggers when a new checkpoint list is generated
+    public UnityEvent OnNewCheckpointListGenerated;
+
     void Start()
     {
         if (trackParent == null)
         {
             trackParent = new GameObject("TrackParent");
+        }
+
+        if (OnNewCheckpointListGenerated == null)
+        {
+            OnNewCheckpointListGenerated = new UnityEvent();
         }
 
         StartCoroutine(DelayedStart());
@@ -53,7 +61,7 @@ public class TrackRegenerator : MonoBehaviour
         while (true)
         {
             CheckAndRegenerateTrack();
-            yield return new WaitForSeconds(0.1f); // Check and regenerate every 2 seconds
+            yield return new WaitForSeconds(0.1f); // Check and regenerate frequently
         }
     }
 
@@ -98,27 +106,29 @@ public class TrackRegenerator : MonoBehaviour
         UpdateLastCheckpoint();
     }
 
-   void StoreCheckpoints(GameObject track)
-{
-    List<Transform> checkpoints = new List<Transform>();
-
-    foreach (Transform child in track.transform)
+    void StoreCheckpoints(GameObject track)
     {
-        if (child.name.StartsWith("Checkpoint_"))
+        List<Transform> checkpoints = new List<Transform>();
+
+        foreach (Transform child in track.transform)
         {
-            checkpoints.Add(child);
+            if (child.name.StartsWith("Checkpoint_"))
+            {
+                checkpoints.Add(child);
+            }
         }
+
+        if (checkpoints.Count > 0)
+        {
+            // Set lastCheckpoint to the last checkpoint in the current track
+            lastCheckpoint = checkpoints[checkpoints.Count - 1];
+        }
+
+        checkpointsList.Add(checkpoints.ToArray());
+
+        // Trigger the UnityEvent when a new checkpoint list is generated
+        OnNewCheckpointListGenerated.Invoke();
     }
-
-    if (checkpoints.Count > 0)
-    {
-        // Set lastCheckpoint to the last checkpoint in the current track
-        lastCheckpoint = checkpoints[checkpoints.Count - 1];
-    }
-
-    checkpointsList.Add(checkpoints.ToArray());
-}
-
 
     void RenameTracks()
     {
@@ -178,8 +188,7 @@ public class TrackRegenerator : MonoBehaviour
             Debug.LogError("No players found with the 'Player' tag.");
             return;
         }
-        //for each palayer get child transform;
-        
+
         Transform closestPlayer = null;
         float closestDistance = Mathf.Infinity;
 
@@ -220,5 +229,19 @@ public class TrackRegenerator : MonoBehaviour
             return checkpointsList[trackList.Count - 1]; // Frontmost track's checkpoints
         }
         return null;
+    }
+
+    // Public function to get the current checkpoint list
+    public Transform[] GetCurrentCheckpointList()
+    {
+        if (checkpointsList.Count > 0)
+        {
+            return checkpointsList[checkpointsList.Count - 1]; // Return the latest checkpoint list
+        }
+        return null;
+    }
+    public List<Transform[]> GetWholeCheckpointsList()
+    {
+        return checkpointsList;
     }
 }

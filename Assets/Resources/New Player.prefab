@@ -627,7 +627,10 @@ MonoBehaviour:
   carController: {fileID: 1652428654579512804}
   speedFactor: 1
   steeringFactor: 1
-  collisionForce: 2000
+  playerCollisionForce: 700
+  wallCollisionForce: 500
+  tractionForceFactor: 2
+  slipThreshold: 0.2
 --- !u!114 &8939252126271797947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -647,13 +650,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1652428654569833374}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6945cffcfa469d4d871bb3f4e597416, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  turnSpeed: 5
+  turnSpeed: 0.5
   maxSteerAngle: 20
   maxRotationAngle: 80
   collisionTurnAngle: 30
@@ -712,15 +715,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3369293391380308006, guid: dcd1e89a4ab09fe44b7291e8fe96f39a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.343
+      value: -0.325
       objectReference: {fileID: 0}
     - target: {fileID: 3369293391380308006, guid: dcd1e89a4ab09fe44b7291e8fe96f39a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.189
+      value: 0.916
       objectReference: {fileID: 0}
     - target: {fileID: 3369293391380308006, guid: dcd1e89a4ab09fe44b7291e8fe96f39a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.047
+      value: 0.008
       objectReference: {fileID: 0}
     - target: {fileID: 3369293391380308006, guid: dcd1e89a4ab09fe44b7291e8fe96f39a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -750,6 +753,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3704011049109215842, guid: dcd1e89a4ab09fe44b7291e8fe96f39a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.069
+      objectReference: {fileID: 0}
+    - target: {fileID: 5750841636754837609, guid: dcd1e89a4ab09fe44b7291e8fe96f39a, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5750841636754837609, guid: dcd1e89a4ab09fe44b7291e8fe96f39a, type: 3}
+      propertyPath: m_OriginBaseGameObject
+      value: 
+      objectReference: {fileID: 8085063977733895404}
+    - target: {fileID: 5750841636754837609, guid: dcd1e89a4ab09fe44b7291e8fe96f39a, type: 3}
+      propertyPath: m_CameraFloorOffsetObject
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5750841636754837609, guid: dcd1e89a4ab09fe44b7291e8fe96f39a, type: 3}
+      propertyPath: m_RequestedTrackingOriginMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8761169723830312723, guid: dcd1e89a4ab09fe44b7291e8fe96f39a, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -759,10 +782,44 @@ PrefabInstance:
     - {fileID: 4024674517549045766, guid: dcd1e89a4ab09fe44b7291e8fe96f39a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1037809965558631483, guid: dcd1e89a4ab09fe44b7291e8fe96f39a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8522011972286797189}
   m_SourcePrefab: {fileID: 100100000, guid: dcd1e89a4ab09fe44b7291e8fe96f39a, type: 3}
+--- !u!114 &3574722911930771646 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5750841636754837609, guid: dcd1e89a4ab09fe44b7291e8fe96f39a, type: 3}
+  m_PrefabInstance: {fileID: 9103147534273558743}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8085063977733895404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0cb9aa70a22847b5925ee5f067c10a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &5807042140681951473 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3369293391380308006, guid: dcd1e89a4ab09fe44b7291e8fe96f39a, type: 3}
   m_PrefabInstance: {fileID: 9103147534273558743}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8085063977733895404 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1037809965558631483, guid: dcd1e89a4ab09fe44b7291e8fe96f39a, type: 3}
+  m_PrefabInstance: {fileID: 9103147534273558743}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8522011972286797189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8085063977733895404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1b602e6738a2254787abd8df1c07f8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xrOrigin: {fileID: 3574722911930771646}
+  moveSpeed: 1
+  rotationSpeed: 70

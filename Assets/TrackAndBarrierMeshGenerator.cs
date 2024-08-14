@@ -30,95 +30,98 @@ public class TrackAndBarrierMeshGenerator : MonoBehaviour
         SaveMeshesAsAssets();
     }
 
-    void GenerateTrackAndBarrierMeshes()
+   void GenerateTrackAndBarrierMeshes()
+{
+    List<Vector3> splinePoints = GenerateSplinePoints(); // Generate points along the spline
+
+    // Create arrays for track mesh data
+    Vector3[] trackVertices = new Vector3[splinePoints.Count * 4]; // 4 vertices per segment (2 for top, 2 for bottom)
+    int[] trackTriangles = new int[(splinePoints.Count - 1) * 6]; // 6 indices per segment (2 triangles)
+
+    // Create arrays for barrier mesh data
+    Vector3[] barrierVertices = new Vector3[splinePoints.Count * 4]; // 4 vertices per segment (2 for left barrier, 2 for right barrier)
+    int[] barrierTriangles = new int[(splinePoints.Count - 1) * 12]; // 12 indices per segment (4 triangles)
+
+    for (int i = 0; i < splinePoints.Count; i++)
     {
-        List<Vector3> splinePoints = GenerateSplinePoints(); // Generate points along the spline
+        Vector3 forward = (i == splinePoints.Count - 1) ? splinePoints[i] - splinePoints[i - 1] : splinePoints[i + 1] - splinePoints[i];
+        forward.Normalize();
+        Vector3 right = Vector3.Cross(Vector3.up, forward).normalized * trackWidth / 2;
 
-        // Create arrays for track mesh data
-        Vector3[] trackVertices = new Vector3[splinePoints.Count * 4]; // 4 vertices per segment (2 for top, 2 for bottom)
-        int[] trackTriangles = new int[(splinePoints.Count - 1) * 6]; // 6 indices per segment (2 triangles)
+        // Track vertices (bottom left, bottom right, top left, top right)
+        trackVertices[i * 4] = splinePoints[i] - right; // Bottom left of track
+        trackVertices[i * 4 + 1] = splinePoints[i] + right; // Bottom right of track
+        trackVertices[i * 4 + 2] = splinePoints[i] - right + Vector3.up * 0.1f; // Top left of track
+        trackVertices[i * 4 + 3] = splinePoints[i] + right + Vector3.up * 0.1f; // Top right of track
 
-        // Create arrays for barrier mesh data
-        Vector3[] barrierVertices = new Vector3[splinePoints.Count * 4]; // 4 vertices per segment (2 for left barrier, 2 for right barrier)
-        int[] barrierTriangles = new int[(splinePoints.Count - 1) * 12]; // 12 indices per segment (4 triangles)
+        // Barrier vertices (left barrier bottom, left barrier top, right barrier bottom, right barrier top)
+        barrierVertices[i * 4] = splinePoints[i] - right; // Bottom of left barrier
+        barrierVertices[i * 4 + 1] = splinePoints[i] - right + Vector3.up * barrierHeight; // Top of left barrier
+        barrierVertices[i * 4 + 2] = splinePoints[i] + right; // Bottom of right barrier
+        barrierVertices[i * 4 + 3] = splinePoints[i] + right + Vector3.up * barrierHeight; // Top of right barrier
 
-        for (int i = 0; i < splinePoints.Count; i++)
+        if (i < splinePoints.Count - 1)
         {
-            Vector3 forward = (i == splinePoints.Count - 1) ? splinePoints[i] - splinePoints[i - 1] : splinePoints[i + 1] - splinePoints[i];
-            forward.Normalize();
-            Vector3 right = Vector3.Cross(Vector3.up, forward).normalized * trackWidth / 2;
+            int trackVertIndex = i * 4;
+            int trackTriIndex = i * 6;
 
-            // Track vertices (bottom left, bottom right, top left, top right)
-            trackVertices[i * 4] = splinePoints[i] - right; // Bottom left of track
-            trackVertices[i * 4 + 1] = splinePoints[i] + right; // Bottom right of track
-            trackVertices[i * 4 + 2] = splinePoints[i] - right + Vector3.up * 0.1f; // Top left of track
-            trackVertices[i * 4 + 3] = splinePoints[i] + right + Vector3.up * 0.1f; // Top right of track
+            // Track surface (correct winding order)
+            trackTriangles[trackTriIndex] = trackVertIndex;
+            trackTriangles[trackTriIndex + 1] = trackVertIndex + 4;
+            trackTriangles[trackTriIndex + 2] = trackVertIndex + 1;
 
-            // Barrier vertices (left barrier bottom, left barrier top, right barrier bottom, right barrier top)
-            barrierVertices[i * 4] = splinePoints[i] - right; // Bottom of left barrier
-            barrierVertices[i * 4 + 1] = splinePoints[i] - right + Vector3.up * barrierHeight; // Top of left barrier
-            barrierVertices[i * 4 + 2] = splinePoints[i] + right; // Bottom of right barrier
-            barrierVertices[i * 4 + 3] = splinePoints[i] + right + Vector3.up * barrierHeight; // Top of right barrier
+            trackTriangles[trackTriIndex + 3] = trackVertIndex + 1;
+            trackTriangles[trackTriIndex + 4] = trackVertIndex + 4;
+            trackTriangles[trackTriIndex + 5] = trackVertIndex + 5;
 
-            if (i < splinePoints.Count - 1)
-            {
-                int trackVertIndex = i * 4;
-                int trackTriIndex = i * 6;
+            int barrierVertIndex = i * 4;
+            int barrierTriIndex = i * 12;
 
-                // Track surface (correct winding order)
-                trackTriangles[trackTriIndex] = trackVertIndex;
-                trackTriangles[trackTriIndex + 1] = trackVertIndex + 4;
-                trackTriangles[trackTriIndex + 2] = trackVertIndex + 1;
+            // Left barrier face (correct winding order)
+            barrierTriangles[barrierTriIndex] = barrierVertIndex;
+            barrierTriangles[barrierTriIndex + 1] = barrierVertIndex + 1;
+            barrierTriangles[barrierTriIndex + 2] = barrierVertIndex + 4;
 
-                trackTriangles[trackTriIndex + 3] = trackVertIndex + 1;
-                trackTriangles[trackTriIndex + 4] = trackVertIndex + 4;
-                trackTriangles[trackTriIndex + 5] = trackVertIndex + 5;
+            barrierTriangles[barrierTriIndex + 3] = barrierVertIndex + 4;
+            barrierTriangles[barrierTriIndex + 4] = barrierVertIndex + 1;
+            barrierTriangles[barrierTriIndex + 5] = barrierVertIndex + 5;
 
-                int barrierVertIndex = i * 4;
-                int barrierTriIndex = i * 12;
+            // Right barrier face (correct winding order)
+            barrierTriangles[barrierTriIndex + 6] = barrierVertIndex + 2;
+            barrierTriangles[barrierTriIndex + 7] = barrierVertIndex + 6;
+            barrierTriangles[barrierTriIndex + 8] = barrierVertIndex + 3;
 
-                // Left barrier face (correct winding order)
-                barrierTriangles[barrierTriIndex] = barrierVertIndex;
-                barrierTriangles[barrierTriIndex + 1] = barrierVertIndex + 1;
-                barrierTriangles[barrierTriIndex + 2] = barrierVertIndex + 4;
-
-                barrierTriangles[barrierTriIndex + 3] = barrierVertIndex + 4;
-                barrierTriangles[barrierTriIndex + 4] = barrierVertIndex + 1;
-                barrierTriangles[barrierTriIndex + 5] = barrierVertIndex + 5;
-
-                // Right barrier face (correct winding order)
-                barrierTriangles[barrierTriIndex + 6] = barrierVertIndex + 2;
-                barrierTriangles[barrierTriIndex + 7] = barrierVertIndex + 6;
-                barrierTriangles[barrierTriIndex + 8] = barrierVertIndex + 3;
-
-                barrierTriangles[barrierTriIndex + 9] = barrierVertIndex + 3;
-                barrierTriangles[barrierTriIndex + 10] = barrierVertIndex + 6;
-                barrierTriangles[barrierTriIndex + 11] = barrierVertIndex + 7;
-            }
+            barrierTriangles[barrierTriIndex + 9] = barrierVertIndex + 3;
+            barrierTriangles[barrierTriIndex + 10] = barrierVertIndex + 6;
+            barrierTriangles[barrierTriIndex + 11] = barrierVertIndex + 7;
         }
-
-        // Create and assign the track mesh
-        trackMesh = new Mesh
-        {
-            vertices = trackVertices,
-            triangles = trackTriangles
-        };
-        trackMesh.RecalculateNormals();
-        trackMeshFilter.mesh = trackMesh;
-        trackMeshCollider.sharedMesh = trackMesh;
-        trackMeshFilter.transform.SetParent(trackWithBarrier.transform); // Parent to TrackWithBarrier
-
-        // Create and assign the barrier mesh
-        barrierMesh = new Mesh
-        {
-            vertices = barrierVertices,
-            triangles = barrierTriangles
-        };
-        barrierMesh.RecalculateNormals();
-        barrierMeshFilter.mesh = barrierMesh;
-        barrierMeshCollider.sharedMesh = barrierMesh;
-        barrierMeshFilter.transform.SetParent(trackWithBarrier.transform); // Parent to TrackWithBarrier
     }
+
+    // Create and assign the track mesh
+    trackMesh = new Mesh
+    {
+        vertices = trackVertices,
+        triangles = trackTriangles
+    };
+    trackMesh.RecalculateNormals();
+    trackMeshFilter.mesh = trackMesh;
+    trackMeshCollider.sharedMesh = trackMesh;
+    trackMeshFilter.transform.SetParent(trackWithBarrier.transform); // Parent to TrackWithBarrier
+
+    // Create and assign the barrier mesh
+    barrierMesh = new Mesh
+    {
+        vertices = barrierVertices,
+        triangles = barrierTriangles
+    };
+    barrierMesh.RecalculateNormals();
+    barrierMeshFilter.mesh = barrierMesh;
+    barrierMeshCollider.sharedMesh = barrierMesh;
+    barrierMeshFilter.transform.SetParent(trackWithBarrier.transform); // Parent to TrackWithBarrier
+
+    // Tag the barriers as "Wall"
+    barrierMeshFilter.gameObject.tag = "Wall";
+}
 
     List<Vector3> GenerateSplinePoints()
     {
