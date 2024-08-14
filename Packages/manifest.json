@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.meta.xr.sdk.all": "67.0.0",
     "com.skaughtx0r.unityffb": "https://github.com/skaughtx0r/unity-ffb.git",
     "com.unity.ai.navigation": "1.1.5",
     "com.unity.collab-proxy": "2.4.4",
