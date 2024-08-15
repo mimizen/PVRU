@@ -275,5 +275,16 @@ public class TrackRegenerator : MonoBehaviour
 
         return positions;
     }
+    public List<Vector3> GetNewCheckpointsPosition()
+    {
+        List<Vector3> positions = new List<Vector3>();
+
+        foreach (Transform checkpoint in checkpointsList[checkpointsList.Count - 1])
+        {
+            positions.Add(checkpoint.position);
+        }
+
+        return positions;
+    }
     
 }

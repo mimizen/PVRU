@@ -4165,6 +4165,7 @@ GameObject:
   - component: {fileID: 1623120567}
   - component: {fileID: 1623120566}
   - component: {fileID: 1623120568}
+  - component: {fileID: 1623120569}
   m_Layer: 0
   m_Name: ObsticalSpawner
   m_TagString: Untagged
@@ -4220,6 +4221,22 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   spawnContinuously: 1
   asteroidParent: {fileID: 0}
+--- !u!114 &1623120569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1623120565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7c09a1b472d99b42a6182d058912eb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnablePrefabs:
+  - {fileID: 8696666623586372248, guid: 3a151a6e89c58c942a2efa917dbe21ba, type: 3}
+  offsetRange: 10
+  spawnAmount: 20
 --- !u!1 &1627676973
 GameObject:
   m_ObjectHideFlags: 0
@@ -5117,6 +5134,10 @@ PrefabInstance:
     - target: {fileID: 8421838897406590368, guid: 63eaebc7744ff2f41beedb9f711ef876, type: 3}
       propertyPath: speed
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8421838897406590368, guid: 63eaebc7744ff2f41beedb9f711ef876, type: 3}
+      propertyPath: steeringValueDisplay
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
