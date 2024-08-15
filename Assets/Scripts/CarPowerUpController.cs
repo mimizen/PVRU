@@ -41,6 +41,22 @@ public class CarPowerUpController : MonoBehaviour
             StartCoroutine(RemoveDownforceAfterTime(boostAmount, duration));
         }
     }
+     public void ApplyStarBoost(float amount, float duration)
+    {
+        StartCoroutine(StarBoostCoroutine(amount, duration));
+    }
+
+    private IEnumerator StarBoostCoroutine(float amount, float duration)
+    {
+        // Example implementation: temporarily increase speed and make the car invincible
+        //carController.MaxSpeed += amount;
+        // Add invincibility logic here
+
+        yield return new WaitForSeconds(duration);
+
+        //carController.MaxSpeed -= amount;
+        // Remove invincibility logic here
+    }
 
     private IEnumerator RemoveDownforceAfterTime(float boostAmount, float duration)
     {

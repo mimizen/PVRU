@@ -9,6 +9,7 @@ public class PhotonPunSpawner : MonoBehaviourPun
     public List<GameObject> powerUpPrefabs; // List of power-up prefabs to spawn
     public float offsetRange = 5f; // Offset range for spawning
     public float minSpacing = 2f; // Minimum spacing required between objects on the x-axis
+    public float obstacleMinOffset = 3f; // Minimum distance required between obstacles
     public int obstacleSpawnAmount = 5; // Total amount of obstacles to spawn across all checkpoints
     public int powerUpSpawnAmount = 3; // Total amount of power-ups to spawn across all checkpoints
 
@@ -16,9 +17,19 @@ public class PhotonPunSpawner : MonoBehaviourPun
     private List<Vector3> spawnPositions;
     private List<Vector3> usedPositions; // List to track used positions to avoid overlaps
 
+    private Transform obstaclesParent; // Reference to the parent object for all spawned objects
+
     private void Start()
     {
         trackRegenerator = FindObjectOfType<TrackRegenerator>();
+
+        // Find or create the parent object named "Obsticals"
+        GameObject parentObject = GameObject.Find("Obsticals");
+        if (parentObject == null)
+        {
+            parentObject = new GameObject("Obsticals");
+        }
+        obstaclesParent = parentObject.transform;
 
         // Register to the UnityEvent
         trackRegenerator.OnNewCheckpointListGenerated.AddListener(SpawnObjectsAtNewCheckpoints);
@@ -59,13 +70,13 @@ public class PhotonPunSpawner : MonoBehaviourPun
         // Spawn Obstacles
         for (int i = 0; i < obstacleSpawnAmount; i++)
         {
-            // Select a random position from the list that hasn't been used and respects the minimum spacing
-            Vector3 selectedPosition = GetRandomAvailablePosition(positions);
+            Vector3 selectedPosition = GetRandomAvailablePosition(positions, obstacleMinOffset);
 
             if (selectedPosition != Vector3.zero) // If a valid position was found
             {
                 Vector3 spawnPosition = selectedPosition + GetRandomOffset();
-                PhotonNetwork.Instantiate(obstaclePrefabs[Random.Range(0, obstaclePrefabs.Count)].name, spawnPosition, Quaternion.identity);
+                GameObject obstacle = PhotonNetwork.Instantiate(obstaclePrefabs[Random.Range(0, obstaclePrefabs.Count)].name, spawnPosition, Quaternion.identity);
+                obstacle.transform.SetParent(obstaclesParent); // Set the parent to "Obsticals"
                 usedPositions.Add(spawnPosition);
             }
         }
@@ -73,27 +84,27 @@ public class PhotonPunSpawner : MonoBehaviourPun
         // Spawn Power-Ups
         for (int i = 0; i < powerUpSpawnAmount; i++)
         {
-            // Select a random position from the list that hasn't been used and respects the minimum spacing
-            Vector3 selectedPosition = GetRandomAvailablePosition(positions);
+            Vector3 selectedPosition = GetRandomAvailablePosition(positions, minSpacing);
 
             if (selectedPosition != Vector3.zero) // If a valid position was found
             {
                 Vector3 spawnPosition = selectedPosition + GetRandomOffset();
                 GameObject powerUp = PhotonNetwork.Instantiate(powerUpPrefabs[Random.Range(0, powerUpPrefabs.Count)].name, spawnPosition, Quaternion.identity);
+                powerUp.transform.SetParent(obstaclesParent); // Set the parent to "Obsticals"
                 powerUp.SetActive(true);
                 usedPositions.Add(spawnPosition);
             }
         }
     }
 
-    private Vector3 GetRandomAvailablePosition(List<Vector3> positions)
+    private Vector3 GetRandomAvailablePosition(List<Vector3> positions, float minDistance)
     {
         List<Vector3> shuffledPositions = new List<Vector3>(positions);
         shuffledPositions.Shuffle(); // Shuffle positions to ensure randomness
 
         foreach (Vector3 position in shuffledPositions)
         {
-            if (IsPositionAvailable(position))
+            if (IsPositionAvailable(position, minDistance))
             {
                 return position;
             }
@@ -102,13 +113,13 @@ public class PhotonPunSpawner : MonoBehaviourPun
         return Vector3.zero; // Return zero vector if no available position found
     }
 
-    private bool IsPositionAvailable(Vector3 position)
+    private bool IsPositionAvailable(Vector3 position, float minDistance)
     {
         foreach (Vector3 usedPosition in usedPositions)
         {
-            if (Mathf.Abs(position.x - usedPosition.x) < minSpacing)
+            if (Vector3.Distance(position, usedPosition) < minDistance)
             {
-                return false; // Position is too close to a used position on the x-axis
+                return false; // Position is too close to a used position
             }
         }
         return true; // Position is available
