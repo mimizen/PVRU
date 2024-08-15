@@ -1,13 +1,30 @@
-using Photon.Pun;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Photon.Realtime;
+using UnityEngine.UI;
+using Photon.Pun;
 
 public class ScorePlaceholder : MonoBehaviourPunCallbacks
 {
+    public static ScorePlaceholder Instance; // Singleton instance
+
+    // Assuming you have Text objects in the UI for player scores
+    public Text player1ScoreText;
+    public Text player2ScoreText;
+
     private int playerScore;
     PhotonView pv;
+
+    private void Awake()
+    {
+        // Ensure only one instance exists
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()
     {
@@ -16,7 +33,7 @@ public class ScorePlaceholder : MonoBehaviourPunCallbacks
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             IncreaseScore(1);
         }
@@ -31,16 +48,34 @@ public class ScorePlaceholder : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    void UpdateScoreUI(int newScore, int playerIndex)
+    public void UpdateScoreUI(int newScore, int playerIndex)
     {
-        // Use the existing instance of UpdateScore to update the UI
+        // Update the UI based on player index
         if (playerIndex == 0) // Player 1
         {
-            UpdateScore.Instance.player1ScoreText.text = "Player 1: " + newScore.ToString();
+            if (player1ScoreText != null)
+            {
+                player1ScoreText.text = "Player 1: " + newScore.ToString();
+            }
+            else
+            {
+                Debug.LogWarning("Player 1 score text is not assigned in the Inspector!");
+            }
         }
         else if (playerIndex == 1) // Player 2
         {
-            UpdateScore.Instance.player2ScoreText.text = "Player 2: " + newScore.ToString();
+            if (player2ScoreText != null)
+            {
+                player2ScoreText.text = "Player 2: " + newScore.ToString();
+            }
+            else
+            {
+                Debug.LogWarning("Player 2 score text is not assigned in the Inspector!");
+            }
+        }
+        else
+        {
+            Debug.LogWarning($"Unexpected player index: {playerIndex}");
         }
     }
 }

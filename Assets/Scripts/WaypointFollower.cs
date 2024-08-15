@@ -11,9 +11,14 @@ public class WaypointFollower : MonoBehaviour
     public float maxSteerAngle = 20f; // Maximum steering angle for wheels
     public float maxRotationAngle = 80f; // Maximum allowed rotation angle away from the waypoint
     public float collisionTurnAngle = 30f; // Maximum turn angle after collision
+    public float speedThreshold = 0.5f; // Speed threshold to detect if the vehicle is stuck
+    public float lowSpeedTimeLimit = 3f; // Time limit in seconds to reset after low speed
+    public float wrongDirectionTimeLimit = 3f; // Time limit in seconds to reset after going in the wrong direction
 
     private Rigidbody rb;
     private TrackRegenerator trackRegenerator;
+    private float lowSpeedTimer = 0f;
+    private float wrongDirectionTimer = 0f;
 
     private void Start()
     {
@@ -38,6 +43,8 @@ public class WaypointFollower : MonoBehaviour
             return;
 
         MoveTowardsWaypoint();
+        CheckForLowSpeed();
+        CheckForWrongDirection();
     }
 
     private void MoveTowardsWaypoint()
@@ -54,7 +61,7 @@ public class WaypointFollower : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
         
         // Move the car forward
-        rb.MovePosition(transform.position + transform.forward * speed * Time.deltaTime);
+       // rb.MovePosition(transform.position + transform.forward * speed * Time.deltaTime);
 
         if (Vector3.Distance(transform.position, waypoints[currentWaypointIndex].position) < 11f)
         {
@@ -82,6 +89,67 @@ public class WaypointFollower : MonoBehaviour
             Quaternion newRotation = Quaternion.LookRotation(newDirection);
             transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, 5 * Time.deltaTime);
         }
+    }
+
+    private void CheckForLowSpeed()
+    {
+        // Check if the speed is below the threshold
+        if (rb.velocity.magnitude < speedThreshold)
+        {
+            lowSpeedTimer += Time.deltaTime;
+
+            // If the speed has been low for too long, reset to the next waypoint
+            if (lowSpeedTimer > lowSpeedTimeLimit)
+            {
+                MoveToNextWaypoint();
+                lowSpeedTimer = 0f; // Reset the timer
+            }
+        }
+        else
+        {
+            lowSpeedTimer = 0f; // Reset the timer if the speed is above the threshold
+        }
+    }
+
+    private void CheckForWrongDirection()
+    {
+        // Calculate the direction towards the next waypoint
+        Vector3 targetDirection = (waypoints[currentWaypointIndex].position - transform.position).normalized;
+        
+        // Check the dot product between the vehicle's forward direction and the direction to the waypoint
+        float dotProduct = Vector3.Dot(transform.forward, targetDirection);
+
+        // If the dot product is negative, it means the vehicle is facing away from the waypoint
+        if (dotProduct < 0)
+        {
+            wrongDirectionTimer += Time.deltaTime;
+
+            // If the vehicle has been moving in the wrong direction for too long, reset it
+            if (wrongDirectionTimer > wrongDirectionTimeLimit)
+            {
+                MoveToNextWaypoint();
+                wrongDirectionTimer = 0f; // Reset the timer
+            }
+        }
+        else
+        {
+            wrongDirectionTimer = 0f; // Reset the timer if the vehicle is moving in the right direction
+        }
+    }
+
+    private void MoveToNextWaypoint()
+    {
+        // Move to the next waypoint
+        currentWaypointIndex++;
+        if (currentWaypointIndex >= waypoints.Count)
+        {
+            currentWaypointIndex = 0; // Loop back to the first waypoint
+        }
+
+        // Move the car to the next waypoint position
+        transform.position = waypoints[currentWaypointIndex].position;
+        rb.velocity = Vector3.zero; // Stop the car's current momentum
+        transform.LookAt(waypoints[(currentWaypointIndex + 1) % waypoints.Count]); // Look towards the next waypoint
     }
 
     private void UpdateWaypointsList()

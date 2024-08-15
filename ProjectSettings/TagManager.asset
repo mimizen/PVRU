@@ -8,6 +8,7 @@ TagManager:
   - StartPoint
   - Earth Clouds
   - Button
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
