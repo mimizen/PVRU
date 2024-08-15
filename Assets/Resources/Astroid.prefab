@@ -131,8 +131,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b775fc61c91b4d1a8aa516710d04e01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionEffectPrefab: {fileID: 162584487599433031, guid: 39f852c28f9c3fd45a427c24f3564ba7, type: 3}
-  effectDuration: 2
+  explosionEffectPrefab: {fileID: 417761080263594737, guid: 7800b8f6b712bfe49bd663eeb3ebe1e4, type: 3}
+  effectDuration: 4
 --- !u!114 &-2115540972547681650
 MonoBehaviour:
   m_ObjectHideFlags: 0
