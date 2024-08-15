@@ -5,11 +5,16 @@ using System.Collections.Generic;
 
 public class PhotonPunSpawner : MonoBehaviourPun
 {
-    public List<GameObject> spawnablePrefabs; // List of prefabs to spawn
+    public List<GameObject> obstaclePrefabs; // List of obstacle prefabs to spawn
+    public List<GameObject> powerUpPrefabs; // List of power-up prefabs to spawn
     public float offsetRange = 5f; // Offset range for spawning
-    public int spawnAmount = 5; // Total amount of objects to spawn across all checkpoints
+    public float minSpacing = 2f; // Minimum spacing required between objects on the x-axis
+    public int obstacleSpawnAmount = 5; // Total amount of obstacles to spawn across all checkpoints
+    public int powerUpSpawnAmount = 3; // Total amount of power-ups to spawn across all checkpoints
+
     private TrackRegenerator trackRegenerator;
     private List<Vector3> spawnPositions;
+    private List<Vector3> usedPositions; // List to track used positions to avoid overlaps
 
     private void Start()
     {
@@ -31,6 +36,7 @@ public class PhotonPunSpawner : MonoBehaviourPun
         if (PhotonNetwork.IsMasterClient)
         {
             spawnPositions = trackRegenerator.GetNewCheckpointsPosition();
+            usedPositions = new List<Vector3>(); // Initialize the used positions list
             SpawnObjectsAtPositions(spawnPositions);
         }
     }
@@ -40,6 +46,7 @@ public class PhotonPunSpawner : MonoBehaviourPun
         if (PhotonNetwork.IsMasterClient)
         {
             spawnPositions = trackRegenerator.GetNewCheckpointsPosition();
+            usedPositions = new List<Vector3>(); // Reset the used positions list
             SpawnObjectsAtPositions(spawnPositions);
         }
     }
@@ -49,24 +56,89 @@ public class PhotonPunSpawner : MonoBehaviourPun
         int totalCheckpoints = positions.Count;
         if (totalCheckpoints == 0) return;
 
-        for (int i = 0; i < spawnAmount; i++)
+        // Spawn Obstacles
+        for (int i = 0; i < obstacleSpawnAmount; i++)
         {
-            // Select a random position from the list
-            Vector3 selectedPosition = positions[Random.Range(0, totalCheckpoints)];
+            // Select a random position from the list that hasn't been used and respects the minimum spacing
+            Vector3 selectedPosition = GetRandomAvailablePosition(positions);
 
-            // Apply offset only on the x-axis (left to right)
-            Vector3 offset = new Vector3(
-                Random.Range(-offsetRange, offsetRange), // Offset on x-axis
-                0,                                      // No offset on y-axis
-                0                                       // No offset on z-axis
-            );
+            if (selectedPosition != Vector3.zero) // If a valid position was found
+            {
+                Vector3 spawnPosition = selectedPosition + GetRandomOffset();
+                PhotonNetwork.Instantiate(obstaclePrefabs[Random.Range(0, obstaclePrefabs.Count)].name, spawnPosition, Quaternion.identity);
+                usedPositions.Add(spawnPosition);
+            }
+        }
 
-            Vector3 spawnPosition = selectedPosition + offset;
+        // Spawn Power-Ups
+        for (int i = 0; i < powerUpSpawnAmount; i++)
+        {
+            // Select a random position from the list that hasn't been used and respects the minimum spacing
+            Vector3 selectedPosition = GetRandomAvailablePosition(positions);
 
-            GameObject prefabToSpawn = spawnablePrefabs[Random.Range(0, spawnablePrefabs.Count)];
+            if (selectedPosition != Vector3.zero) // If a valid position was found
+            {
+                Vector3 spawnPosition = selectedPosition + GetRandomOffset();
+                GameObject powerUp = PhotonNetwork.Instantiate(powerUpPrefabs[Random.Range(0, powerUpPrefabs.Count)].name, spawnPosition, Quaternion.identity);
+                powerUp.SetActive(true);
+                usedPositions.Add(spawnPosition);
+            }
+        }
+    }
 
-            // Spawn the object using PhotonNetwork.Instantiate
-            PhotonNetwork.Instantiate(prefabToSpawn.name, spawnPosition, Quaternion.identity);
+    private Vector3 GetRandomAvailablePosition(List<Vector3> positions)
+    {
+        List<Vector3> shuffledPositions = new List<Vector3>(positions);
+        shuffledPositions.Shuffle(); // Shuffle positions to ensure randomness
+
+        foreach (Vector3 position in shuffledPositions)
+        {
+            if (IsPositionAvailable(position))
+            {
+                return position;
+            }
+        }
+
+        return Vector3.zero; // Return zero vector if no available position found
+    }
+
+    private bool IsPositionAvailable(Vector3 position)
+    {
+        foreach (Vector3 usedPosition in usedPositions)
+        {
+            if (Mathf.Abs(position.x - usedPosition.x) < minSpacing)
+            {
+                return false; // Position is too close to a used position on the x-axis
+            }
+        }
+        return true; // Position is available
+    }
+
+    private Vector3 GetRandomOffset()
+    {
+        return new Vector3(
+            Random.Range(-offsetRange, offsetRange), // Offset on x-axis
+            0,                                      // No offset on y-axis
+            0                                       // No offset on z-axis
+        );
+    }
+}
+
+// Extension method to shuffle a list
+public static class ListExtensions
+{
+    private static System.Random rng = new System.Random();
+
+    public static void Shuffle<T>(this IList<T> list)
+    {
+        int n = list.Count;
+        while (n > 1)
+        {
+            n--;
+            int k = rng.Next(n + 1);
+            T value = list[k];
+            list[k] = list[n];
+            list[n] = value;
         }
     }
 }
