@@ -1706,6 +1706,7 @@ MonoBehaviour:
   powerUpPrefabs:
   - {fileID: 7804062030484566230, guid: cf6f15e9cf4369542b74d3ccdbb2e6af, type: 3}
   - {fileID: 7804062030484566230, guid: 355db4afd2d0b71468888f479332a208, type: 3}
+  - {fileID: 7804062030484566230, guid: 90862fe2f31d7fa41b69662414dff1fa, type: 3}
   offsetRange: 12.5
   minSpacing: 5
   obstacleMinOffset: 4

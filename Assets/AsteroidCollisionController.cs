@@ -17,6 +17,9 @@ public class AsteroidCollisionController : MonoBehaviourPun
             //PhotonView playerPhotonView = other.GetComponent<PhotonView>();
             //Debug.Log("PlayerPhotonView: " + playerPhotonView+"  IsMine: "+playerPhotonView.IsMine+"collider: "+other);
 
+            GameObject explosionEffect = Instantiate(explosionEffectPrefab,
+                other.transform.position, Quaternion.identity);
+            Destroy(explosionEffect, effectDuration);
 
             if (playerPhotonView != null)
             {
