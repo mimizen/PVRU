@@ -51,7 +51,7 @@ public class EarthOptionsGUISimple : MonoBehaviour {
 			cloudRotationSpeed = GUI.HorizontalScrollbar (new Rect (25, 150, labelWidth, 30), cloudRotationSpeed, 1.0f, 0.0f, 15.0f);
 
 			GUI.Label(new Rect(25,180,labelWidth,30), "Cloud type");
-			cloudType = GUI.HorizontalScrollbar(new Rect(25,210,labelWidth,30), cloudType, 1.0f,0.0f,generalUIScript.cloudMaterials.Count);
+			//cloudType = GUI.HorizontalScrollbar(new Rect(25,210,labelWidth,30), cloudType, 1.0f,0.0f,generalUIScript.cloudMaterials.Count);
 		}
 		else
 		{
