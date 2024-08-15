@@ -138,9 +138,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 629424397728637276, guid: f33a0550d10ac43dbba8f56bcc22f9a7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 629424397728648710, guid: f33a0550d10ac43dbba8f56bcc22f9a7, type: 3}
       propertyPath: m_Name
       value: Working Car
+      objectReference: {fileID: 0}
+    - target: {fileID: 629424397728662498, guid: f33a0550d10ac43dbba8f56bcc22f9a7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 629424397728815096, guid: f33a0550d10ac43dbba8f56bcc22f9a7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 629424397730609482, guid: f33a0550d10ac43dbba8f56bcc22f9a7, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
