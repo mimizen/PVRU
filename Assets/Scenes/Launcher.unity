@@ -2284,6 +2284,18 @@ PrefabInstance:
       value: CuteAlienRagdoll (2)
       objectReference: {fileID: 0}
     - target: {fileID: 2000483824677504190, guid: f954a48635f9fe141af24fc93c42de39, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000483824677504190, guid: f954a48635f9fe141af24fc93c42de39, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000483824677504190, guid: f954a48635f9fe141af24fc93c42de39, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000483824677504190, guid: f954a48635f9fe141af24fc93c42de39, type: 3}
       propertyPath: m_LocalPosition.x
       value: 23.1
       objectReference: {fileID: 0}
@@ -2322,6 +2334,10 @@ PrefabInstance:
     - target: {fileID: 2000483824677504190, guid: f954a48635f9fe141af24fc93c42de39, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0.132
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000483824677504190, guid: f954a48635f9fe141af24fc93c42de39, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2000483825321334771, guid: f954a48635f9fe141af24fc93c42de39, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -2381,6 +2397,18 @@ PrefabInstance:
       value: CuteAlienRagdoll
       objectReference: {fileID: 0}
     - target: {fileID: 2000483824677504190, guid: f954a48635f9fe141af24fc93c42de39, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000483824677504190, guid: f954a48635f9fe141af24fc93c42de39, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000483824677504190, guid: f954a48635f9fe141af24fc93c42de39, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000483824677504190, guid: f954a48635f9fe141af24fc93c42de39, type: 3}
       propertyPath: m_LocalPosition.x
       value: 11.4
       objectReference: {fileID: 0}
@@ -2419,6 +2447,10 @@ PrefabInstance:
     - target: {fileID: 2000483824677504190, guid: f954a48635f9fe141af24fc93c42de39, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0.132
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000483824677504190, guid: f954a48635f9fe141af24fc93c42de39, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2000483825321334771, guid: f954a48635f9fe141af24fc93c42de39, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -2465,6 +2497,18 @@ PrefabInstance:
       value: CuteAlienRagdoll (1)
       objectReference: {fileID: 0}
     - target: {fileID: 2000483824677504190, guid: f954a48635f9fe141af24fc93c42de39, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000483824677504190, guid: f954a48635f9fe141af24fc93c42de39, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000483824677504190, guid: f954a48635f9fe141af24fc93c42de39, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000483824677504190, guid: f954a48635f9fe141af24fc93c42de39, type: 3}
       propertyPath: m_LocalPosition.x
       value: 23
       objectReference: {fileID: 0}
@@ -2503,6 +2547,10 @@ PrefabInstance:
     - target: {fileID: 2000483824677504190, guid: f954a48635f9fe141af24fc93c42de39, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0.132
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000483824677504190, guid: f954a48635f9fe141af24fc93c42de39, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2000483825321334771, guid: f954a48635f9fe141af24fc93c42de39, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -2943,6 +2991,18 @@ PrefabInstance:
       value: CuteAlienRagdoll (3)
       objectReference: {fileID: 0}
     - target: {fileID: 2000483824677504190, guid: f954a48635f9fe141af24fc93c42de39, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000483824677504190, guid: f954a48635f9fe141af24fc93c42de39, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000483824677504190, guid: f954a48635f9fe141af24fc93c42de39, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000483824677504190, guid: f954a48635f9fe141af24fc93c42de39, type: 3}
       propertyPath: m_LocalPosition.x
       value: 11.5
       objectReference: {fileID: 0}
@@ -2981,6 +3041,10 @@ PrefabInstance:
     - target: {fileID: 2000483824677504190, guid: f954a48635f9fe141af24fc93c42de39, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0.132
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000483824677504190, guid: f954a48635f9fe141af24fc93c42de39, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2000483825321334771, guid: f954a48635f9fe141af24fc93c42de39, type: 3}
       propertyPath: m_Materials.Array.data[0]
