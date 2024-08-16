@@ -6,7 +6,6 @@ public class ScorePlaceholder : MonoBehaviourPunCallbacks
 {
     public static ScorePlaceholder Instance; // Singleton instance
 
-    // Assuming you have Text objects in the UI for player scores
     public Text player1ScoreText;
     public Text player2ScoreText;
 

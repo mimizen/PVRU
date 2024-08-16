@@ -6,15 +6,19 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityStandardAssets.Vehicles.Car;
 using UnityFFB;
+using UnityEngine.XR.Interaction.Toolkit.Inputs;
+using UnityEngine.XR.Interaction.Toolkit;
+using Unity.XR.CoreUtils;
 
 public class NewPlayer : MonoBehaviour
 {
     [SerializeField] private GameObject playerPrefab;
-    public Transform head;
+    /*public Transform head;
     public Transform leftHand;
-    public Transform rightHand;
+    public Transform rightHand;*/
     private PhotonView photonView;
-
+    private InputActionManager inputActionManager;
+    private XRInteractionManager xRInteractionManager;
     private CarController carController;
 
     private CarUserControl carUserControl;
@@ -36,22 +40,26 @@ public class NewPlayer : MonoBehaviour
         carPowerUpController = this.GetComponentInChildren<CarPowerUpController>();
         serialCommunication = this.GetComponentInChildren<SerialCommunication>();
         rb = this.GetComponentInChildren<Rigidbody>();
+        inputActionManager = this.GetComponentInChildren<InputActionManager>();
+        xRInteractionManager = this.GetComponentInChildren<XRInteractionManager>();
         photonView = GetComponent<PhotonView>();
 
         // Disable the hands and head for remote players
         if (!photonView.IsMine)
         {
             // These objects should remain active for the local player, but be disabled for remote players
-            rightHand.gameObject.SetActive(false);
+            /*rightHand.gameObject.SetActive(false);
             leftHand.gameObject.SetActive(false);
-            head.gameObject.SetActive(false);
+            head.gameObject.SetActive(false);*/
             carController.enabled = false;
             //carUserControl.enabled = false;
             carFFB.enabled = false;
             carPowerUpController.enabled = false;
             serialCommunication.enabled = false;
             rb.isKinematic = true;
-            playerPrefab.GetComponentInChildren<Camera>().enabled = false;
+            playerPrefab.GetComponentInChildren<XROrigin>().enabled = false;
+            inputActionManager.enabled = false;
+            xRInteractionManager.enabled = false;
         }
     }
 
@@ -61,33 +69,40 @@ public class NewPlayer : MonoBehaviour
         if (photonView.IsMine)
         {
             // Activate and map VR components only if this is the local player's instance
-            head.gameObject.SetActive(true);
+            /*head.gameObject.SetActive(true);
             leftHand.gameObject.SetActive(true);
-            rightHand.gameObject.SetActive(true);
+            rightHand.gameObject.SetActive(true);*/
 
             carController.enabled = true;
             //carUserControl.enabled = true;
             carFFB.enabled = true;
             carPowerUpController.enabled = true;
             serialCommunication.enabled = true;
+            playerPrefab.GetComponentInChildren<XROrigin>().enabled = true;
             //rb.isKinematic = false; if i set false my car would fall down.
 
-            MapPosition(head, XRNode.Head);
+            inputActionManager.enabled = true;
+            xRInteractionManager.enabled = true;
+
+            /*MapPosition(head, XRNode.Head);
             MapPosition(leftHand, XRNode.LeftHand);
-            MapPosition(rightHand, XRNode.RightHand);
+            MapPosition(rightHand, XRNode.RightHand);*/
         }
         else
         {
             // Deactivate components for non-local players
-            head.gameObject.SetActive(false);
+            /*head.gameObject.SetActive(false);
             leftHand.gameObject.SetActive(false);
-            rightHand.gameObject.SetActive(false);
+            rightHand.gameObject.SetActive(false);*/
             carController.enabled = false;
             //carUserControl.enabled = false;
             carFFB.enabled = false;
             carPowerUpController.enabled = false;
             serialCommunication.enabled = false;
             rb.isKinematic = true;
+            playerPrefab.GetComponentInChildren<XROrigin>().enabled = false;
+            inputActionManager.enabled = false;
+            xRInteractionManager.enabled = false;
         }
     }
 
