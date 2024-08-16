@@ -19,7 +19,7 @@ public class SpawnPlayer : MonoBehaviourPunCallbacks
         {
             int playerIndex = (PhotonNetwork.LocalPlayer.ActorNumber - 1) % spawnPoints.Length;
             Transform spawnPoint = spawnPoints[playerIndex];
-            spawnedPlayerPrefab = PhotonNetwork.Instantiate(name, spawnPoint.position, spawnPoint.rotation);
+            spawnedPlayerPrefab = PhotonNetwork.Instantiate("New Player Hand Tracking", spawnPoint.position, spawnPoint.rotation);
         }
     }
 
@@ -29,7 +29,7 @@ public class SpawnPlayer : MonoBehaviourPunCallbacks
 
         int playerIndex = (PhotonNetwork.LocalPlayer.ActorNumber - 1) % spawnPoints.Length;
         Transform spawnPoint = spawnPoints[playerIndex];
-        spawnedPlayerPrefab = PhotonNetwork.Instantiate("NewPlayerHandTracking", spawnPoint.position, spawnPoint.rotation);
+        spawnedPlayerPrefab = PhotonNetwork.Instantiate("New Player Hand Tracking", spawnPoint.position, spawnPoint.rotation);
     }
 
     public override void OnLeftRoom()

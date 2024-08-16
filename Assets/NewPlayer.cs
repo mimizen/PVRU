@@ -17,8 +17,6 @@ public class NewPlayer : MonoBehaviour
     public Transform leftHand;
     public Transform rightHand;*/
     private PhotonView photonView;
-    private InputActionManager inputActionManager;
-    private XRInteractionManager xRInteractionManager;
     private CarController carController;
 
     private CarUserControl carUserControl;
@@ -40,8 +38,6 @@ public class NewPlayer : MonoBehaviour
         carPowerUpController = this.GetComponentInChildren<CarPowerUpController>();
         serialCommunication = this.GetComponentInChildren<SerialCommunication>();
         rb = this.GetComponentInChildren<Rigidbody>();
-        inputActionManager = this.GetComponentInChildren<InputActionManager>();
-        xRInteractionManager = this.GetComponentInChildren<XRInteractionManager>();
         photonView = GetComponent<PhotonView>();
 
         // Disable the hands and head for remote players
