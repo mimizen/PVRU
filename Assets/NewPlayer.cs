@@ -31,7 +31,6 @@ public class NewPlayer : MonoBehaviour
 
     private WaypointFollower wf;
 
-    private StartButton startButton;
 
     // Start is called before the first frame update
     void Start()
@@ -45,12 +44,6 @@ public class NewPlayer : MonoBehaviour
         serialCommunication = this.GetComponentInChildren<SerialCommunication>();
         rb = this.GetComponentInChildren<Rigidbody>();
         photonView = GetComponent<PhotonView>();
-
-        if (startButton != null)
-        {
-            startButton = GetComponent<StartButton>();
-        }
-        
 
         // Disable the hands and head for remote players
         if (!photonView.IsMine)
@@ -68,10 +61,6 @@ public class NewPlayer : MonoBehaviour
             playerPrefab.GetComponentInChildren<Camera>().enabled = false;
             wf.enabled = false;
 
-            if (startButton != null)
-            {
-                startButton.enabled = false;
-            }
         }
     }
 
@@ -93,10 +82,6 @@ public class NewPlayer : MonoBehaviour
             serialCommunication.enabled = true;
             playerPrefab.GetComponentInChildren<Camera>().enabled = true;
 
-            if (startButton != null)
-            {
-                startButton.enabled = true;
-            }
             //rb.isKinematic = false; if i set false my car would fall down.
 
 
@@ -118,10 +103,6 @@ public class NewPlayer : MonoBehaviour
             serialCommunication.enabled = false;
             rb.isKinematic = true;
             playerPrefab.GetComponentInChildren<Camera>().enabled = false;
-            if (startButton != null)
-            {
-                startButton.enabled = false;
-            }
 
         }
 

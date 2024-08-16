@@ -8360,6 +8360,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PokeButton
       objectReference: {fileID: 0}
+    - target: {fileID: 2130331530761912223, guid: d661f645c81f29b4aa596207971ae441, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4434510254525139557, guid: d661f645c81f29b4aa596207971ae441, type: 3}
       propertyPath: m_IsActive
       value: 0
