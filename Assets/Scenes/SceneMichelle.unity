@@ -2208,14 +2208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstaclePrefabs:
-  - {fileID: 8696666623586372248, guid: 3a151a6e89c58c942a2efa917dbe21ba, type: 3}
   - {fileID: 8696666623586372248, guid: 827026bbb704c574cb9b5da5b7059064, type: 3}
-  - {fileID: 8696666623586372248, guid: a9edabe3d9101ad47919b0fb24aecb00, type: 3}
-  - {fileID: 8696666623586372248, guid: 6e48d9ae3ba3e88488be4da399d896ab, type: 3}
-  - {fileID: 8696666623586372248, guid: 5e1599399ec3e4646a2becc1abc16557, type: 3}
-  - {fileID: 8696666623586372248, guid: 5e2b08db93c14f541bb0b8238c21ea06, type: 3}
-  - {fileID: 8696666623586372248, guid: 245fd97d2051fe14b95d2046e05e734b, type: 3}
-  - {fileID: 8696666623586372248, guid: 1940c5bd3410f784e996a8ab4d1ac4f2, type: 3}
   powerUpPrefabs:
   - {fileID: 7804062030484566230, guid: cf6f15e9cf4369542b74d3ccdbb2e6af, type: 3}
   - {fileID: 7804062030484566230, guid: 355db4afd2d0b71468888f479332a208, type: 3}
