@@ -57,9 +57,7 @@ public class NewPlayer : MonoBehaviour
             carPowerUpController.enabled = false;
             serialCommunication.enabled = false;
             rb.isKinematic = true;
-            playerPrefab.GetComponentInChildren<XROrigin>().enabled = false;
-            inputActionManager.enabled = false;
-            xRInteractionManager.enabled = false;
+            playerPrefab.GetComponentInChildren<Camera>().enabled = false;
         }
     }
 
@@ -78,11 +76,9 @@ public class NewPlayer : MonoBehaviour
             carFFB.enabled = true;
             carPowerUpController.enabled = true;
             serialCommunication.enabled = true;
-            playerPrefab.GetComponentInChildren<XROrigin>().enabled = true;
+            playerPrefab.GetComponentInChildren<Camera>().enabled = true;
             //rb.isKinematic = false; if i set false my car would fall down.
 
-            inputActionManager.enabled = true;
-            xRInteractionManager.enabled = true;
 
             /*MapPosition(head, XRNode.Head);
             MapPosition(leftHand, XRNode.LeftHand);
@@ -100,9 +96,7 @@ public class NewPlayer : MonoBehaviour
             carPowerUpController.enabled = false;
             serialCommunication.enabled = false;
             rb.isKinematic = true;
-            playerPrefab.GetComponentInChildren<XROrigin>().enabled = false;
-            inputActionManager.enabled = false;
-            xRInteractionManager.enabled = false;
+            playerPrefab.GetComponentInChildren<Camera>().enabled = false;
         }
     }
 
