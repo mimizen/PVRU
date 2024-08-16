@@ -9,15 +9,17 @@ public class SpawnPlayer : MonoBehaviourPunCallbacks
 {
     public Transform[] spawnPoints;
     private GameObject spawnedPlayerPrefab;
+    public GameObject playerPrefab;
 
     void Start()
     {
+        string prefabName = playerPrefab.name;
         // Instantiate the player when the scene loads, if not already instantiated
         if (SceneManager.GetActiveScene().name == "SceneMichelle" && spawnedPlayerPrefab == null && PhotonNetwork.CurrentRoom != null)
         {
             int playerIndex = (PhotonNetwork.LocalPlayer.ActorNumber - 1) % spawnPoints.Length;
             Transform spawnPoint = spawnPoints[playerIndex];
-            spawnedPlayerPrefab = PhotonNetwork.Instantiate("NewPlayerHandTracking", spawnPoint.position, spawnPoint.rotation);
+            spawnedPlayerPrefab = PhotonNetwork.Instantiate(name, spawnPoint.position, spawnPoint.rotation);
         }
     }
 
