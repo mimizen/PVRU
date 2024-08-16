@@ -31,17 +31,19 @@ public class NewPlayer : MonoBehaviour
 
     private Rigidbody rb;
 
+    private WaypointFollower wf;
+
     // Start is called before the first frame update
     void Start()
     {
+        wf = this.GetComponent<WaypointFollower>();
         carController = this.GetComponentInChildren<CarController>();
         carUserControl = this.GetComponentInChildren<CarUserControl>();
         carFFB = this.GetComponentInChildren<CarFFB>();
+
         carPowerUpController = this.GetComponentInChildren<CarPowerUpController>();
         serialCommunication = this.GetComponentInChildren<SerialCommunication>();
         rb = this.GetComponentInChildren<Rigidbody>();
-        inputActionManager = this.GetComponentInChildren<InputActionManager>();
-        xRInteractionManager = this.GetComponentInChildren<XRInteractionManager>();
         photonView = GetComponent<PhotonView>();
 
         // Disable the hands and head for remote players
@@ -60,6 +62,7 @@ public class NewPlayer : MonoBehaviour
             playerPrefab.GetComponentInChildren<XROrigin>().enabled = false;
             inputActionManager.enabled = false;
             xRInteractionManager.enabled = false;
+            wf.enabled = false;
         }
     }
 
@@ -75,14 +78,13 @@ public class NewPlayer : MonoBehaviour
 
             carController.enabled = true;
             //carUserControl.enabled = true;
+            wf.enabled = true;
             carFFB.enabled = true;
             carPowerUpController.enabled = true;
             serialCommunication.enabled = true;
             playerPrefab.GetComponentInChildren<XROrigin>().enabled = true;
             //rb.isKinematic = false; if i set false my car would fall down.
 
-            inputActionManager.enabled = true;
-            xRInteractionManager.enabled = true;
 
             /*MapPosition(head, XRNode.Head);
             MapPosition(leftHand, XRNode.LeftHand);
@@ -97,22 +99,22 @@ public class NewPlayer : MonoBehaviour
             carController.enabled = false;
             //carUserControl.enabled = false;
             carFFB.enabled = false;
+            wf.enabled = false;
             carPowerUpController.enabled = false;
             serialCommunication.enabled = false;
             rb.isKinematic = true;
             playerPrefab.GetComponentInChildren<XROrigin>().enabled = false;
-            inputActionManager.enabled = false;
-            xRInteractionManager.enabled = false;
+
         }
-    }
 
-    void MapPosition(Transform target, XRNode node)
-    {
-        // Get the position and rotation from the XR device and apply it to the target transform
-        InputDevices.GetDeviceAtXRNode(node).TryGetFeatureValue(CommonUsages.devicePosition, out Vector3 position);
-        InputDevices.GetDeviceAtXRNode(node).TryGetFeatureValue(CommonUsages.deviceRotation, out Quaternion rotation);
+        void MapPosition(Transform target, XRNode node)
+        {
+            // Get the position and rotation from the XR device and apply it to the target transform
+            InputDevices.GetDeviceAtXRNode(node).TryGetFeatureValue(CommonUsages.devicePosition, out Vector3 position);
+            InputDevices.GetDeviceAtXRNode(node).TryGetFeatureValue(CommonUsages.deviceRotation, out Quaternion rotation);
 
-        target.position = position;
-        target.rotation = rotation;
+            target.position = position;
+            target.rotation = rotation;
+        }
     }
 }
