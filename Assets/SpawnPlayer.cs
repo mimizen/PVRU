@@ -13,7 +13,8 @@ public class SpawnPlayer : MonoBehaviourPunCallbacks
     void Start()
     {
         // Instantiate the player when the scene loads, if not already instantiated
-        if (SceneManager.GetActiveScene().name == "SceneMichelle" && spawnedPlayerPrefab == null && PhotonNetwork.CurrentRoom != null)
+        if (SceneManager.GetActiveScene().name == "SceneMichelle" && spawnedPlayerPrefab == null && PhotonNetwork.CurrentRoom != null ||
+            SceneManager.GetActiveScene().name == "GameOver" && spawnedPlayerPrefab == null && PhotonNetwork.CurrentRoom != null)
         {
             int playerIndex = (PhotonNetwork.LocalPlayer.ActorNumber - 1) % spawnPoints.Length;
             Transform spawnPoint = spawnPoints[playerIndex];
