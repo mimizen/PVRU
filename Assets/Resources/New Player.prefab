@@ -2554,9 +2554,6 @@ PrefabInstance:
       addedObject: {fileID: 7087587530866865955}
     - targetCorrespondingSourceObject: {fileID: 161566, guid: ffe00fa3bd41b9a4db665bf728e3c1e1, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2223454935483381831}
-    - targetCorrespondingSourceObject: {fileID: 161566, guid: ffe00fa3bd41b9a4db665bf728e3c1e1, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 8333397053091148927}
     - targetCorrespondingSourceObject: {fileID: 161566, guid: ffe00fa3bd41b9a4db665bf728e3c1e1, type: 3}
       insertIndex: -1
@@ -2637,26 +2634,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e70a01c870cb25a4bbbd0d8a2a6c385f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2223454935483381831
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 629424397728648710}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6945cffcfa469d4d871bb3f4e597416, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1
-  turnSpeed: 0.1
-  maxSteerAngle: 20
-  maxRotationAngle: 80
-  collisionTurnAngle: 30
-  speedThreshold: 0.5
-  lowSpeedTimeLimit: 1.5
-  wrongDirectionTimeLimit: 2
 --- !u!114 &8333397053091148927
 MonoBehaviour:
   m_ObjectHideFlags: 0

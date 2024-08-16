@@ -44,7 +44,7 @@ namespace UnityStandardAssets.Vehicles.Car
                 PhotonView pv = player.GetComponent<PhotonView>();
                 if (pv != null && pv.IsMine)  // Ensure this is the local player's PhotonView
                 {
-                    CarController cc = player.GetComponentInChildren<CarController>();
+                    CarController cc = player.GetComponent<CarController>();
                     if (cc != null)
                     {
                         m_Car = cc;

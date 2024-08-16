@@ -17,8 +17,6 @@ public class NewPlayer : MonoBehaviour
     public Transform leftHand;
     public Transform rightHand;*/
     private PhotonView photonView;
-    private InputActionManager inputActionManager;
-    private XRInteractionManager xRInteractionManager;
     private CarController carController;
 
     private CarUserControl carUserControl;
@@ -59,9 +57,7 @@ public class NewPlayer : MonoBehaviour
             carPowerUpController.enabled = false;
             serialCommunication.enabled = false;
             rb.isKinematic = true;
-            playerPrefab.GetComponentInChildren<XROrigin>().enabled = false;
-            inputActionManager.enabled = false;
-            xRInteractionManager.enabled = false;
+            playerPrefab.GetComponentInChildren<Camera>().enabled = false;
             wf.enabled = false;
         }
     }
@@ -82,7 +78,7 @@ public class NewPlayer : MonoBehaviour
             carFFB.enabled = true;
             carPowerUpController.enabled = true;
             serialCommunication.enabled = true;
-            playerPrefab.GetComponentInChildren<XROrigin>().enabled = true;
+            playerPrefab.GetComponentInChildren<Camera>().enabled = true;
             //rb.isKinematic = false; if i set false my car would fall down.
 
 
@@ -103,7 +99,7 @@ public class NewPlayer : MonoBehaviour
             carPowerUpController.enabled = false;
             serialCommunication.enabled = false;
             rb.isKinematic = true;
-            playerPrefab.GetComponentInChildren<XROrigin>().enabled = false;
+            playerPrefab.GetComponentInChildren<Camera>().enabled = false;
 
         }
 
