@@ -683,7 +683,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 555062592}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 63f49ce4473689741ab5b0e0d6831749, type: 3}
   m_Name: 
@@ -1310,7 +1310,7 @@ Transform:
   m_GameObject: {fileID: 1088004227}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.352032, y: -14.910012, z: -58.805637}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1751,7 +1751,7 @@ Transform:
   m_GameObject: {fileID: 1459192267}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 83, y: -33.8, z: 122.1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2209,6 +2209,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstaclePrefabs:
   - {fileID: 8696666623586372248, guid: 827026bbb704c574cb9b5da5b7059064, type: 3}
+  - {fileID: 8696666623586372248, guid: 6e48d9ae3ba3e88488be4da399d896ab, type: 3}
+  - {fileID: 8696666623586372248, guid: 5e1599399ec3e4646a2becc1abc16557, type: 3}
+  - {fileID: 8696666623586372248, guid: 245fd97d2051fe14b95d2046e05e734b, type: 3}
+  - {fileID: 8696666623586372248, guid: 5e2b08db93c14f541bb0b8238c21ea06, type: 3}
+  - {fileID: 8696666623586372248, guid: a9edabe3d9101ad47919b0fb24aecb00, type: 3}
+  - {fileID: 8696666623586372248, guid: 1940c5bd3410f784e996a8ab4d1ac4f2, type: 3}
   powerUpPrefabs:
   - {fileID: 7804062030484566230, guid: cf6f15e9cf4369542b74d3ccdbb2e6af, type: 3}
   - {fileID: 7804062030484566230, guid: 355db4afd2d0b71468888f479332a208, type: 3}
