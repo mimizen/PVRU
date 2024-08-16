@@ -1,5 +1,7 @@
-using UnityEngine;
 using Photon.Pun;
+using Photon.Realtime;
+using Photon.Pun.UtilityScripts;
+using UnityEngine;
 
 namespace Com.MyCompany.MyGame
 {
@@ -49,34 +51,6 @@ namespace Com.MyCompany.MyGame
             }
         }
 
-        #region Public Methods
-
-        /// <summary>
-        /// Start the connection process.
-        /// - If already connected, we attempt joining a random room
-        /// - if not yet connected, Connect this application instance to Photon Cloud Network
-        /// </summary>
-        /* public void Connect()
-        {
-            // we check if we are connected or not, we join if we are , else we initiate the connection to the server.
-            if (PhotonNetwork.IsConnected)
-            {
-                // #Critical we need at this point to attempt joining a Random Room. If it fails, we'll get notified in OnJoinRandomFailed() and we'll create one.
-                PhotonNetwork.JoinRandomRoom();
-            }
-            else
-            {
-                // #Critical, we must first and foremost connect to Photon Online Server.
-                PhotonNetwork.ConnectUsingSettings();
-                PhotonNetwork.GameVersion = gameVersion;
-            }
-        }
-
-        public override void OnJoinedRoom()
-        {
-            Debug.Log("Joined Room - Waiting for players...");
-            // Additional code can be added here to handle player UI in the lobby
-        } */
 
         // Call this function when the Play button is clicked
         public void StartGame()
@@ -88,8 +62,6 @@ namespace Com.MyCompany.MyGame
             }
 
         }
-
-        #endregion
 
     }
 }
