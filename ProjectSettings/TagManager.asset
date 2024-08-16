@@ -9,6 +9,7 @@ TagManager:
   - Earth Clouds
   - Button
   - Checkpoint
+  - Launcher
   layers:
   - Default
   - TransparentFX

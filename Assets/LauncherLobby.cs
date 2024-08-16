@@ -3,7 +3,7 @@ using Photon.Pun;
 
 namespace Com.MyCompany.MyGame
 {
-    public class Launcher : MonoBehaviourPunCallbacks
+    public class LauncherLobby : MonoBehaviourPunCallbacks
     {
         #region Private Serializable Fields
 
@@ -84,7 +84,7 @@ namespace Com.MyCompany.MyGame
             if (PhotonNetwork.IsMasterClient)
             {
                 Debug.Log("Master client is starting the game");
-                PhotonNetwork.LoadLevel("SceneMichelle"); 
+                PhotonNetwork.LoadLevel("SceneMichelle");
             }
 
         }
