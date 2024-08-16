@@ -24,6 +24,14 @@ public class PowerUpController : MonoBehaviour
 
             // Check if the player object is controlled by the local player
             PhotonView playerPhotonView = other.GetComponentInParent<PhotonView>();
+
+
+            GameObject explosionEffect = Instantiate(explosionEffectPrefab,
+                other.transform.position, Quaternion.identity);
+            Destroy(explosionEffect);
+
+
+
             if (playerPhotonView != null && playerPhotonView.IsMine)
             {
                 CarPowerUpController powerUpController = other.GetComponentInParent<CarPowerUpController>();
