@@ -748,7 +748,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6e80bd78216774f834a88b44275a9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  winningScore: 10
+  winningScore: 100
   photonView: {fileID: 676704708}
 --- !u!4 &676704710
 Transform:
