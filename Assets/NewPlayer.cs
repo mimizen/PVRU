@@ -17,8 +17,6 @@ public class NewPlayer : MonoBehaviour
     public Transform leftHand;
     public Transform rightHand;*/
     private PhotonView photonView;
-    private InputActionManager inputActionManager;
-    private XRInteractionManager xRInteractionManager;
     private CarController carController;
 
     private CarUserControl carUserControl;
@@ -40,8 +38,6 @@ public class NewPlayer : MonoBehaviour
         carPowerUpController = this.GetComponentInChildren<CarPowerUpController>();
         serialCommunication = this.GetComponentInChildren<SerialCommunication>();
         rb = this.GetComponentInChildren<Rigidbody>();
-        inputActionManager = this.GetComponentInChildren<InputActionManager>();
-        xRInteractionManager = this.GetComponentInChildren<XRInteractionManager>();
         photonView = GetComponent<PhotonView>();
 
         // Disable the hands and head for remote players
@@ -58,8 +54,6 @@ public class NewPlayer : MonoBehaviour
             serialCommunication.enabled = false;
             rb.isKinematic = true;
             playerPrefab.GetComponentInChildren<XROrigin>().enabled = false;
-            inputActionManager.enabled = false;
-            xRInteractionManager.enabled = false;
         }
     }
 
@@ -81,9 +75,6 @@ public class NewPlayer : MonoBehaviour
             playerPrefab.GetComponentInChildren<XROrigin>().enabled = true;
             //rb.isKinematic = false; if i set false my car would fall down.
 
-            inputActionManager.enabled = true;
-            xRInteractionManager.enabled = true;
-
             /*MapPosition(head, XRNode.Head);
             MapPosition(leftHand, XRNode.LeftHand);
             MapPosition(rightHand, XRNode.RightHand);*/
@@ -101,8 +92,6 @@ public class NewPlayer : MonoBehaviour
             serialCommunication.enabled = false;
             rb.isKinematic = true;
             playerPrefab.GetComponentInChildren<XROrigin>().enabled = false;
-            inputActionManager.enabled = false;
-            xRInteractionManager.enabled = false;
         }
     }
 
