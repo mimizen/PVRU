@@ -67,37 +67,42 @@ public class Asteroid : MonoBehaviourPun, IPunObservable
         }
     }
 
-    private void MoveTowardsCheckpoint()
+   private void MoveTowardsCheckpoint()
+{
+    if (checkpoints[currentCheckpointIndex] == null)
     {
-        if(checkpoints[currentCheckpointIndex]==null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        // Move towards the current checkpoint
-        Transform targetCheckpoint = checkpoints[currentCheckpointIndex];
-        Vector3 targetPosition = targetCheckpoint.position + offset;
+        Destroy(gameObject);
+        return;
+    }
 
-        // Rotate to look at the next checkpoint
-        Vector3 direction = targetPosition - transform.position;
-        if (direction != Vector3.zero)
-        {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * speed);
-        }
+    // Move towards the current checkpoint
+    Transform targetCheckpoint = checkpoints[currentCheckpointIndex];
 
-        // Move towards the next checkpoint
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+    // Transform the offset to world space relative to the asteroid's rotation
+    Vector3 adjustedOffset = transform.rotation * offset;
+    Vector3 targetPosition = targetCheckpoint.position + adjustedOffset;
 
-        // Check if we've reached the checkpoint
-        if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
+    // Rotate to look at the next checkpoint
+    Vector3 direction = targetPosition - transform.position;
+    if (direction != Vector3.zero)
+    {
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * speed);
+    }
+
+    // Move towards the next checkpoint
+    transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+
+    // Check if we've reached the checkpoint
+    if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
+    {
+        currentCheckpointIndex--;
+        if (currentCheckpointIndex < 0)
         {
-            currentCheckpointIndex--;
-            if (currentCheckpointIndex < 0)
-            {
-                PhotonNetwork.Destroy(gameObject); // Destroy the asteroid when it reaches the first checkpoint
-            }
+            PhotonNetwork.Destroy(gameObject); // Destroy the asteroid when it reaches the first checkpoint
         }
     }
+}
+
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {

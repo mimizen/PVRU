@@ -608,7 +608,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 555062592}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 63f49ce4473689741ab5b0e0d6831749, type: 3}
   m_Name: 
@@ -2230,8 +2230,8 @@ MonoBehaviour:
   offsetRange: 12.5
   minSpacing: 5
   obstacleMinOffset: 4
-  obstacleSpawnAmount: 30
-  powerUpSpawnAmount: 10
+  obstacleSpawnAmount: 50
+  powerUpSpawnAmount: 15
 --- !u!114 &1728410342 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3650416521594491319, guid: 3265bf3eaec5e534788e86664709ab53, type: 3}

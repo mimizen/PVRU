@@ -74,9 +74,10 @@ public class PhotonPunSpawner : MonoBehaviourPun
 
             if (selectedPosition != Vector3.zero) // If a valid position was found
             {
-                Vector3 spawnPosition = selectedPosition + GetRandomOffset();
+                Vector3 spawnPosition = selectedPosition + GetRandomOffset(selectedPosition);
                 GameObject obstacle = PhotonNetwork.Instantiate(obstaclePrefabs[Random.Range(0, obstaclePrefabs.Count)].name, spawnPosition, Quaternion.identity);
                 obstacle.transform.SetParent(obstaclesParent); // Set the parent to "Obsticals"
+                obstacle.transform.LookAt(selectedPosition); // Make the obstacle face the checkpoint or target position
                 usedPositions.Add(spawnPosition);
             }
         }
@@ -88,9 +89,10 @@ public class PhotonPunSpawner : MonoBehaviourPun
 
             if (selectedPosition != Vector3.zero) // If a valid position was found
             {
-                Vector3 spawnPosition = selectedPosition + GetRandomOffset();
+                Vector3 spawnPosition = selectedPosition + GetRandomOffset(selectedPosition);
                 GameObject powerUp = PhotonNetwork.Instantiate(powerUpPrefabs[Random.Range(0, powerUpPrefabs.Count)].name, spawnPosition, Quaternion.identity);
                 powerUp.transform.SetParent(obstaclesParent); // Set the parent to "Obsticals"
+                powerUp.transform.LookAt(selectedPosition); // Make the power-up face the checkpoint or target position
                 powerUp.SetActive(true);
                 usedPositions.Add(spawnPosition);
             }
@@ -125,13 +127,17 @@ public class PhotonPunSpawner : MonoBehaviourPun
         return true; // Position is available
     }
 
-    private Vector3 GetRandomOffset()
+    private Vector3 GetRandomOffset(Vector3 referencePosition)
     {
-        return new Vector3(
+        // Calculate offset in local space relative to the reference position's direction
+        Vector3 randomOffset = new Vector3(
             Random.Range(-offsetRange, offsetRange), // Offset on x-axis
             0,                                      // No offset on y-axis
             0                                       // No offset on z-axis
         );
+
+        // Transform the offset from local to world space
+        return Quaternion.LookRotation(referencePosition - transform.position) * randomOffset;
     }
 }
 
