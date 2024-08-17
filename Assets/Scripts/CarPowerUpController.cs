@@ -84,39 +84,43 @@ namespace UnityStandardAssets.Vehicles.Car
         }
         /*
         public void ApplyZeroGravity()
+    {
+        StartCoroutine(ZeroGravityCoroutine());
+    }
+
+    private IEnumerator ZeroGravityCoroutine()
+    {
+        // Make the car kinematic (disables physics interactions)
+        if (carRigidbody != null)
         {
-            StartCoroutine(ZeroGravityCoroutine());
+            carRigidbody.isKinematic = true;
         }
 
-        private IEnumerator ZeroGravityCoroutine()
+        // Slightly lift the car above the track
+        Vector3 aboveTrackPosition = transform.position + new Vector3(0, 2f, 0);
+        transform.position = aboveTrackPosition;
+
+        // Enable waypoint following
+        if (carAIControl != null)
         {
-            // Disable gravity
-            if (carRigidbody != null)
-            {
-                carRigidbody.useGravity = false;
-            }
-
-            // Enable waypoint following
-            if (carAIControl != null)
-            {
-                carAIControl.enabled = true;
-            }
-
-            // Wait for 3 seconds
-            yield return new WaitForSeconds(3f);
-
-            // Re-enable gravity
-            if (carRigidbody != null)
-            {
-                carRigidbody.useGravity = true;
-            }
-
-            // Disable waypoint following
-            if (carAIControl != null)
-            {
-                carAIControl.enabled = false;
-            }
+            carAIControl.enabled = true;
         }
+
+        // Wait for 3 seconds
+        yield return new WaitForSeconds(3f);
+
+        // Revert the car back to non-kinematic (enables physics interactions)
+        if (carRigidbody != null)
+        {
+            carRigidbody.isKinematic = false;
+        }
+
+        // Disable waypoint following
+        if (carAIControl != null)
+        {
+            carAIControl.enabled = false;
+        }
+    }
         */
 
 
