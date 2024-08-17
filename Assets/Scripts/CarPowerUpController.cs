@@ -56,7 +56,7 @@ namespace UnityStandardAssets.Vehicles.Car
                 carController.m_Downforce -= boostAmount;
             }
         }
-
+        
         public void ApplyStarBoost(float amount, float duration)
         {
             StartCoroutine(StarBoostCoroutine(amount, duration));
@@ -70,26 +70,10 @@ namespace UnityStandardAssets.Vehicles.Car
                 carController.m_Topspeed += amount;
             }
 
-            // Disable the car's collider to make it invincible
-            //if (carCollider != null)
-            //{
-           //     carCollider.enabled = false;
-            //}
-
-
+      
 
             // Wait for the duration of the power-up
             yield return new WaitForSeconds(duration);
-
-
-
-
-            // Re-enable the car's collider
-           // if (carCollider != null)
-//{
-             //   carCollider.enabled = true;
-           // }
-
 
 
             // Revert the speed boost
@@ -98,7 +82,50 @@ namespace UnityStandardAssets.Vehicles.Car
                 carController.m_Topspeed -= amount;
             }
         }
+        /*
+        public void ApplyZeroGravity()
+        {
+            StartCoroutine(ZeroGravityCoroutine());
+        }
 
-        // More methods for other power-ups...
+        private IEnumerator ZeroGravityCoroutine()
+        {
+            // Disable gravity
+            if (carRigidbody != null)
+            {
+                carRigidbody.useGravity = false;
+            }
+
+            // Enable waypoint following
+            if (carAIControl != null)
+            {
+                carAIControl.enabled = true;
+            }
+
+            // Wait for 3 seconds
+            yield return new WaitForSeconds(3f);
+
+            // Re-enable gravity
+            if (carRigidbody != null)
+            {
+                carRigidbody.useGravity = true;
+            }
+
+            // Disable waypoint following
+            if (carAIControl != null)
+            {
+                carAIControl.enabled = false;
+            }
+        }
+        */
+
+
     }
+
+
+
+
+
+    // More methods for other power-ups...
 }
+
