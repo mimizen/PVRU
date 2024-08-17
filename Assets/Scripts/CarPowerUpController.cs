@@ -71,19 +71,26 @@ namespace UnityStandardAssets.Vehicles.Car
             }
 
             // Disable the car's collider to make it invincible
-            if (carCollider != null)
-            {
-                carCollider.enabled = false;
-            }
+            //if (carCollider != null)
+            //{
+           //     carCollider.enabled = false;
+            //}
+
+
 
             // Wait for the duration of the power-up
             yield return new WaitForSeconds(duration);
 
+
+
+
             // Re-enable the car's collider
-            if (carCollider != null)
-            {
-                carCollider.enabled = true;
-            }
+           // if (carCollider != null)
+//{
+             //   carCollider.enabled = true;
+           // }
+
+
 
             // Revert the speed boost
             if (carController != null)
