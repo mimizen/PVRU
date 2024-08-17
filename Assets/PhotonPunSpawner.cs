@@ -75,7 +75,7 @@ public class PhotonPunSpawner : MonoBehaviourPun
             if (selectedPosition != Vector3.zero) // If a valid position was found
             {
                 Vector3 spawnPosition = selectedPosition + GetRandomOffset(selectedPosition);
-                GameObject obstacle = PhotonNetwork.Instantiate(obstaclePrefabs[Random.Range(0, obstaclePrefabs.Count)].name, spawnPosition, Quaternion.identity);
+                GameObject obstacle = PhotonNetwork.Instantiate(obstaclePrefabs[Random.Range(0, obstaclePrefabs.Count)].name, spawnPosition+new Vector3(0,1,0), Quaternion.identity);
                 obstacle.transform.SetParent(obstaclesParent); // Set the parent to "Obsticals"
                 obstacle.transform.LookAt(selectedPosition); // Make the obstacle face the checkpoint or target position
                 usedPositions.Add(spawnPosition);
