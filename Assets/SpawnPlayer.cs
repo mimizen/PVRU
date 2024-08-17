@@ -4,6 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.SceneManagement;
+using Unity.XR.CoreUtils;
 
 public class SpawnPlayer : MonoBehaviourPunCallbacks
 {
@@ -19,7 +20,12 @@ public class SpawnPlayer : MonoBehaviourPunCallbacks
             int playerIndex = (PhotonNetwork.LocalPlayer.ActorNumber - 1) % spawnPoints.Length;
             Transform spawnPoint = spawnPoints[playerIndex];
             spawnedPlayerPrefab = PhotonNetwork.Instantiate("New Player", spawnPoint.position, spawnPoint.rotation);
+            if(SceneManager.GetActiveScene().name == "SceneMichelle")
+            {
+                spawnedPlayerPrefab.GetNamedChild("Cube").SetActive(false);
+            }
         }
+       
     }
 
     public override void OnJoinedRoom()
