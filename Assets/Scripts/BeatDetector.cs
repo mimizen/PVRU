@@ -1,5 +1,7 @@
 using UnityEngine;
 using Photon.Pun;
+using Unity.XR.CoreUtils;
+using Unity.VisualScripting;
 
 public class ImprovedBeatDetector : MonoBehaviour
 {
@@ -8,6 +10,8 @@ public class ImprovedBeatDetector : MonoBehaviour
     public float minThreshold = 0.0005f;
     public GameObject leftParticlePrefab;  // Assign in Inspector
     public GameObject rightParticlePrefab; // Assign in Inspector
+
+    public GameObject parentObject;
 
     private float[] spectrumData = new float[256];
     private float previousAverage = 0.0f;
@@ -50,6 +54,7 @@ public class ImprovedBeatDetector : MonoBehaviour
    void OnBeat()
 {
     // Find all game objects with the tag "Player"
+    /*
     GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
 
     foreach (GameObject player in players)
@@ -64,7 +69,33 @@ public class ImprovedBeatDetector : MonoBehaviour
         }
     }
 
-    Debug.Log("Beat detected!");
+    Debug.Log("Beat detected!");*/
+
+    // go through all the children of the parent object
+    foreach (Transform child in parentObject.transform)
+    {
+        // Check if the player GameObject is controlled by this client
+        GameObject bar = child.gameObject.GetNamedChild("Barrier");
+        // get the renderes of material and change to neon colors; 
+        if (bar != null)
+        {
+            // Spawn particle effects with slight position variations
+
+            Color RandomNeon = Random.ColorHSV(0f, 1f, 0.8f, 1f, 0.9f, 1f);
+            // check if it is greenish and if yes reroll                    
+            while (RandomNeon.g > 0.5f)
+            {
+                RandomNeon = Random.ColorHSV(0f, 1f, 0.8f, 1f, 0.9f, 1f);
+            }
+            // change opacity of the color
+            RandomNeon.a = 0.25f;
+
+           bar.GetComponent<Renderer>().material.color = RandomNeon;
+            Debug.Log("Beat detected and player is controlled by this client!");
+        }
+    }
+
+
 }
     void SpawnParticleEffects(Transform playerTransform)
     {
