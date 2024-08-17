@@ -10,6 +10,9 @@ TagManager:
   - Button
   - Checkpoint
   - Launcher
+  - Enemy
+  - Coin
+  - Asteroid
   layers:
   - Default
   - TransparentFX

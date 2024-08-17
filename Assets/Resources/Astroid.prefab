@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2337759772263549466}
   m_Layer: 0
   m_Name: Astroid
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -143,6 +143,10 @@ PrefabInstance:
     - target: {fileID: 190680, guid: ead4c151b2850004782f62d3ac573cbe, type: 3}
       propertyPath: m_Name
       value: Asteroid_B (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 190680, guid: ead4c151b2850004782f62d3ac573cbe, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 449400, guid: ead4c151b2850004782f62d3ac573cbe, type: 3}
       propertyPath: m_LocalScale.x
