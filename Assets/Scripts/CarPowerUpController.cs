@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor.UI;
 using UnityEngine;
 namespace UnityStandardAssets.Vehicles.Car
 {
@@ -6,6 +7,8 @@ namespace UnityStandardAssets.Vehicles.Car
     {
         private CarController carController;
         private Collider carCollider;
+
+        private CarUserControl carUserControl;
 
         private void Start()
         {
@@ -25,7 +28,10 @@ namespace UnityStandardAssets.Vehicles.Car
         {
             if (carController != null)
             {
+                carUserControl = FindAnyObjectByType<CarUserControl>();
+                carUserControl.speed += 2;
                 carController.m_Topspeed += boostAmount;
+                
                 StartCoroutine(RemoveSpeedBoostAfterTime(boostAmount, duration));
             }
         }
@@ -36,6 +42,8 @@ namespace UnityStandardAssets.Vehicles.Car
             if (carController != null)
             {
                 carController.m_Topspeed -= boostAmount;
+                carUserControl = FindAnyObjectByType<CarUserControl>();
+                carUserControl.speed -= 2;
             }
         }
 
@@ -59,16 +67,28 @@ namespace UnityStandardAssets.Vehicles.Car
 
         public void ApplyStarBoost(float amount, float duration)
         {
-            StartCoroutine(StarBoostCoroutine(amount, duration));
+           // WaypointFollower waypointFollower = GetComponent<WaypointFollower>();
+           // Rigidbody rigidbody = GetComponent<Rigidbody>();
+          //  rigidbody.isKinematic = true;
+            // put me up in the air
+           // rigidbody.AddForce(Vector3.up * 1000, ForceMode.Impulse);
+           // waypointFollower.turnSpeed += 5;
+           // waypointFollower.push += 10;
+           // StartCoroutine(StarBoostCoroutine(amount, duration));
         }
 
         private IEnumerator StarBoostCoroutine(float amount, float duration)
         {
+             yield return new WaitForSeconds(duration);
             // Temporarily increase speed
-            if (carController != null)
-            {
-                carController.m_Topspeed += amount;
-            }
+           // WaypointFollower waypointFollower = GetComponent<WaypointFollower>();
+           // Rigidbody rigidbody = GetComponent<Rigidbody>();
+           // rigidbody.isKinematic = false;
+            // put me up in the air
+           // rigidbody.AddForce(Vector3.up * 1000, ForceMode.Impulse);
+          //  waypointFollower.turnSpeed -= 5;
+          //  waypointFollower.push = 0;
+            
 
             // Disable the car's collider to make it invincible
             //if (carCollider != null)
@@ -79,7 +99,7 @@ namespace UnityStandardAssets.Vehicles.Car
 
 
             // Wait for the duration of the power-up
-            yield return new WaitForSeconds(duration);
+           /// yield return new WaitForSeconds(duration);
 
 
 
@@ -93,10 +113,10 @@ namespace UnityStandardAssets.Vehicles.Car
 
 
             // Revert the speed boost
-            if (carController != null)
-            {
+           // if (carController != null)
+           // {
                 carController.m_Topspeed -= amount;
-            }
+           // }
         }
 
         // More methods for other power-ups...

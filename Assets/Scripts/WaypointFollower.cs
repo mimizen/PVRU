@@ -13,7 +13,9 @@ public class WaypointFollower : MonoBehaviour
     public float collisionTurnAngle = 30f; // Maximum turn angle after collision
     public float speedThreshold = 0.5f; // Speed threshold to detect if the vehicle is stuck
     public float lowSpeedTimeLimit = 3f; // Time limit in seconds to reset after low speed
-    public float wrongDirectionTimeLimit = 3f; // Time limit in seconds to reset after going in the wrong direction
+    public float wrongDirectionTimeLimit = 3f;
+    
+    public float push; // Time limit in seconds to reset after going in the wrong direction
 
     private Rigidbody rb;
     private TrackRegenerator trackRegenerator;
@@ -61,7 +63,9 @@ public class WaypointFollower : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
         
         // Move the car forward
-       // rb.MovePosition(transform.position + transform.forward * speed * Time.deltaTime);
+        if(push > 0){
+       rb.MovePosition(transform.position + transform.forward * push * Time.deltaTime);
+    }
 
         if (Vector3.Distance(transform.position, waypoints[currentWaypointIndex].position) < 11f)
         {
