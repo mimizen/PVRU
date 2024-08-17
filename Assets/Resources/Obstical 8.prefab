@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -4744515239108610800}
   m_Layer: 0
   m_Name: Obstical 8
-  m_TagString: Untagged
+  m_TagString: Asteroid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -221,8 +221,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 121.421
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5499024, guid: 84cc3cd234dfc9d4d9d2e92c0eb0af75, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 446090, guid: 84cc3cd234dfc9d4d9d2e92c0eb0af75, type: 3}

@@ -30,5 +30,25 @@ public class ScoreCounter : MonoBehaviourPunCallbacks
             }
             
         }
+
+        if (other.CompareTag("Coin"))
+        {
+            // Increment the score if it is me who collided with the coint
+            if (photonView.IsMine)
+            {
+                Debug.Log("Coin collected");
+                AddScore(5);
+            }
+        }
+
+        if (other.CompareTag("Enemy"))
+        {
+            // Decrease the score if it is me who collided with the asteroid
+            if (photonView.IsMine)
+            {
+                Debug.Log("Asteroid hit");
+                AddScore(-1);
+            }
+        }
     }
 }
