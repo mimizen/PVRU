@@ -47,6 +47,32 @@ namespace UnityStandardAssets.Vehicles.Car
             }
         }
 
+
+        public void ApplySpeedDump(float boostAmount, float duration)
+        {
+            if (carController != null)
+            {
+                carUserControl = FindAnyObjectByType<CarUserControl>();
+                carUserControl.speed += 0;
+                carController.m_Topspeed += boostAmount;
+
+                StartCoroutine(RemoveSpeedDumpAfterTime(boostAmount, duration));
+            }
+        }
+
+        private IEnumerator RemoveSpeedDumpAfterTime(float boostAmount, float duration)
+        {
+            yield return new WaitForSeconds(duration);
+            if (carController != null)
+            {
+                carController.m_Topspeed -= boostAmount;
+                carUserControl = FindAnyObjectByType<CarUserControl>();
+                carUserControl.speed -= 0;
+            }
+        }
+
+
+
         public void ApplyDownforceBoost(float boostAmount, float duration)
         {
             if (carController != null)

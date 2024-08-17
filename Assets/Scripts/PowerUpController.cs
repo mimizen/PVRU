@@ -7,7 +7,8 @@ public class PowerUpController : MonoBehaviour
     public enum PowerUpType
     {
         SpeedBoost,
-        StarBoost
+        StarBoost,
+        SpeedDump
         // Add more power-up types as needed
     }
 
@@ -61,6 +62,10 @@ public class PowerUpController : MonoBehaviour
                 break;
             case PowerUpType.StarBoost:
                 powerUpController.ApplyStarBoost(effectAmount, duration);
+                break;
+
+            case PowerUpType.SpeedDump:
+                powerUpController.ApplySpeedDump(effectAmount, duration);
                 break;
             // Handle more power-up types...
         }
