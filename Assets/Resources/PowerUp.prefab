@@ -71,7 +71,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerUpType: 0
-  effectAmount: 1000
+  effectAmount: 100000
   duration: 3
   explosionEffectPrefab: {fileID: 74078499623404262, guid: 9790383d97594f049aecba8cf470e3b7, type: 3}
 --- !u!114 &904614956009481668

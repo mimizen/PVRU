@@ -28,11 +28,13 @@ namespace UnityStandardAssets.Vehicles.Car
         {
             if (carController != null)
             {
-                carUserControl = FindAnyObjectByType<CarUserControl>();
+                /*carUserControl = FindAnyObjectByType<CarUserControl>();
                 carUserControl.speed += 2;
                 carController.m_Topspeed += boostAmount;
                 
-                StartCoroutine(RemoveSpeedBoostAfterTime(boostAmount, duration));
+                StartCoroutine(RemoveSpeedBoostAfterTime(boostAmount, duration));*/
+
+                this.GetComponent<Rigidbody>().AddForce(transform.forward * boostAmount,ForceMode.Impulse);
             }
         }
 

@@ -47,7 +47,7 @@ public class SerialCommunication : MonoBehaviour
 
             // Calculate the speed percentage and scale it to a value between 0-255
             float speedPercentage = Mathf.Clamp01(currentSpeed / maxSpeed); // Get percentage between 0 and 1
-            int speedValue = Mathf.RoundToInt(speedPercentage * 255); // Scale to 0-255 range
+            int speedValue = Mathf.RoundToInt((speedPercentage * 255)); // Scale to 100-255 range
 
             // Send the speed value to the ESP device as a line of text
             serialPort.WriteLine(speedValue.ToString());
