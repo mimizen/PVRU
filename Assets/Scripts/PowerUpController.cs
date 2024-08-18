@@ -59,6 +59,7 @@ public class PowerUpController : MonoBehaviour
         {
             case PowerUpType.SpeedBoost:
                 powerUpController.ApplySpeedBoost(effectAmount, duration);
+                powerUpController.ApplyDownforceBoost(500, duration);
                 break;
             case PowerUpType.StarBoost:
                 powerUpController.ApplyStarBoost(effectAmount, duration);

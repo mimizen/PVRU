@@ -7758,6 +7758,22 @@ PrefabInstance:
       propertyPath: inputActionAsset
       value: 
       objectReference: {fileID: -944628639613478452, guid: 652ee45a07dbbcd4398fb6c2137dd997, type: 3}
+    - target: {fileID: 14600250, guid: ffe00fa3bd41b9a4db665bf728e3c1e1, type: 3}
+      propertyPath: m_SidewaysFriction.m_Stiffness
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 14677570, guid: ffe00fa3bd41b9a4db665bf728e3c1e1, type: 3}
+      propertyPath: m_SidewaysFriction.m_Stiffness
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 14686064, guid: ffe00fa3bd41b9a4db665bf728e3c1e1, type: 3}
+      propertyPath: m_SidewaysFriction.m_Stiffness
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 14689242, guid: ffe00fa3bd41b9a4db665bf728e3c1e1, type: 3}
+      propertyPath: m_SidewaysFriction.m_Stiffness
+      value: 0.9
+      objectReference: {fileID: 0}
     - target: {fileID: 19879246, guid: ffe00fa3bd41b9a4db665bf728e3c1e1, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
       value: 3
@@ -7896,10 +7912,12 @@ MonoBehaviour:
   carController: {fileID: 629424397722597500}
   speedFactor: 1
   steeringFactor: 1
-  playerCollisionForce: 700
-  wallCollisionForce: 500
-  tractionForceFactor: 2
+  playerCollisionForce: 50000
+  wallCollisionForce: 100000
+  tractionForceFactor: 1
   slipThreshold: 0.2
+  steeringExponentialFactor: 5
+  appliedeffect: 0
 --- !u!114 &7087587530866865955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9275,7 +9293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   steeringWheel: {fileID: 5738081676835948015}
   steeringWheelCenter: {fileID: 5738081676835948015}
-  maxTurnAngle: 180
+  maxTurnAngle: 360
 --- !u!1001 &6888189915608214317
 PrefabInstance:
   m_ObjectHideFlags: 0

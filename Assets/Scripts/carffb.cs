@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Unity.Mathematics;
 using UnityEngine;
@@ -18,6 +19,7 @@ namespace UnityFFB
         public float tractionForceFactor = 2f;  // Factor to increase force if the car is not slipping
         public float slipThreshold = 0.2f;  // Threshold below which the car is considered not slipping
         public float steeringExponentialFactor = 1.5f;  // Exponential factor for steering force
+        public float appliedeffect = 0;
 
         private void Start()
         {
@@ -64,11 +66,11 @@ namespace UnityFFB
                 // Determine if the steering direction is left or right relative to the car's current forward direction
                 if (steeringAngle > 0)
                 {
-                    ffb.force = forceValue;
+                    ffb.force = forceValue+ Mathf.Abs((int)appliedeffect);
                 }
                 else if (steeringAngle < 0)
                 {
-                    ffb.force = -forceValue;
+                    ffb.force = -(forceValue+Mathf.Abs((int)appliedeffect));
                 }
 
                 yield return new WaitForSeconds(0.1f);
@@ -98,27 +100,28 @@ namespace UnityFFB
             }
             else
             {
-                collisionForce = (int)(wallCollisionForce * 0.5f); // Default force for other collisions
+                collisionForce = (int)(wallCollisionForce * 1f); // Default force for other collisions
                 Debug.Log("Collision with other object detected. Default force feedback applied.");
             }
 
             // Apply force feedback in the direction of the collision relative to the car's forward direction
             if (angle > 45f && angle <= 135f) // Right side collision
             {
-                ffb.force = collisionForce;
+                ffb.force += collisionForce;
             }
             else if (angle < -45f && angle >= -135f) // Left side collision
             {
-                ffb.force = -collisionForce;
+                ffb.force += -collisionForce;
             }
             else if (angle > -45f && angle <= 45f) // Front collision
             {
-                ffb.force = collisionForce;
+                ffb.force += collisionForce;
             }
             else // Rear collision
             {
-                ffb.force = -collisionForce;
+                ffb.force += -collisionForce;
             }
+            appliedeffect = collisionForce;
 
             ffb.StartFFBEffects();
             StartCoroutine(StopCollisionForceFeedback());
@@ -127,7 +130,7 @@ namespace UnityFFB
         private IEnumerator StopCollisionForceFeedback()
         {
             yield return new WaitForSeconds(0.25f);
-            ffb.force = 0;
+            appliedeffect = 0;
             Debug.Log("Collision force feedback stopped.");
         }
     }

@@ -214,7 +214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0361ef24bcc4fe34a9cde8552ed474df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countdownTime: 3
+  countdownTime: 5
   countdownText: {fileID: 1901887326}
 --- !u!4 &314832928
 Transform:
@@ -748,7 +748,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6e80bd78216774f834a88b44275a9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  winningScore: 100
+  winningScore: 200
   photonView: {fileID: 676704708}
 --- !u!4 &676704710
 Transform:
@@ -2370,7 +2370,6 @@ MonoBehaviour:
   - {fileID: 8696666623586372248, guid: 3a151a6e89c58c942a2efa917dbe21ba, type: 3}
   powerUpPrefabs:
   - {fileID: 7804062030484566230, guid: cf6f15e9cf4369542b74d3ccdbb2e6af, type: 3}
-  - {fileID: 7804062030484566230, guid: 355db4afd2d0b71468888f479332a208, type: 3}
   - {fileID: 7804062030484566230, guid: 90862fe2f31d7fa41b69662414dff1fa, type: 3}
   - {fileID: 7804062030484566230, guid: 850bb0d2f9f6f314b8e8deaedba69ec0, type: 3}
   offsetRange: 12.5
