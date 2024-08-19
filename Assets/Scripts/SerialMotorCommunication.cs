@@ -43,7 +43,8 @@ public class SerialCommunication : MonoBehaviour
         if (serialPort.IsOpen && carController != null)
         {
             float currentSpeed = carController.CurrentSpeed;
-            float maxSpeed = carController.MaxSpeed;
+            //float maxSpeed = carController.MaxSpeed;
+            float maxSpeed = 100f;
 
             // Calculate the speed percentage and scale it to a value between 0-255
             float speedPercentage = Mathf.Clamp01(currentSpeed / maxSpeed); // Get percentage between 0 and 1

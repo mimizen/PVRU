@@ -214,7 +214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0361ef24bcc4fe34a9cde8552ed474df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countdownTime: 5
+  countdownTime: 3
   countdownText: {fileID: 1901887326}
 --- !u!4 &314832928
 Transform:
