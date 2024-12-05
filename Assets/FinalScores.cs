@@ -17,7 +17,7 @@ public class FinalScores : MonoBehaviour
         {
             if (player == PhotonNetwork.PlayerList[0])
             {
-                player1ScoreText.text = $"Player 1 Final Score: {player.GetScore()}";
+                player1ScoreText.text = $"Final Score: {player.GetScore()}";
             }
             // Update Player 2's score if the player is the second in the list
             else if (player == PhotonNetwork.PlayerList[1])
